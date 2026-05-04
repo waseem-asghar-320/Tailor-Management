@@ -1,7 +1,17 @@
 import React from "react";
 import styles from "./Header.module.css";
+import { useNavigate } from "react-router-dom";
+
+
+
+
 
 function Header({ setOpen, open }) {
+    const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login"); // go to login page on logout
+  };
   return (
     <div>
       {/* Top bar */}
@@ -13,7 +23,7 @@ function Header({ setOpen, open }) {
           </button>
         </div>
         <div>
-          <h4 className={styles.logout}>
+          <h4 className={styles.logout} onClick={handleLogin}>
             <i className="fa-solid fa-power-off"></i>
             Log Out
           </h4>
@@ -21,6 +31,7 @@ function Header({ setOpen, open }) {
       </div>
 
     </div>
+    
   );
 }
 
