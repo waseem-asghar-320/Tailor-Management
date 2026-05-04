@@ -1,34 +1,27 @@
 import React from "react";
-import { useState } from "react";
-import Sidebar from "../../../Sidebar/Sidebar";
 import styles from "./Header.module.css";
 
-
-function Header() {
-  const [open, setOpen] = useState(false);
-
+function Header({ setOpen, open }) {
   return (
     <div>
       {/* Top bar */}
-      <div className={styles.navbar}>
-        <button onClick={() => setOpen(true)} className={styles.menuBtn}>
+      <div className={styles.navbar} style={{left: open ? "250px" : "0px",
+        width: open ? "calc(100% - 250px)" : "100%",}}>
+        <div>
+          <button onClick={() => setOpen(true)} className={styles.menuBtn}>
           ☰
-        </button>
-        <h4 className={styles.logout}>
-          <i class="fa-solid fa-power-off"></i>
-          Log Out</h4>
+          </button>
+        </div>
+        <div>
+          <h4 className={styles.logout}>
+            <i className="fa-solid fa-power-off"></i>
+            Log Out
+          </h4>
+        </div>
       </div>
 
-      {/* Sidebar */}
-      <Sidebar open={open} setOpen={setOpen} />
-
-
-      
-  
     </div>
   );
 }
-
-
 
 export default Header;
