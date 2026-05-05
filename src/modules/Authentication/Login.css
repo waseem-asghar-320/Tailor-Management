@@ -40,7 +40,7 @@ textarea {
 button {
   width: 100%;
   padding: 10px;
-  background: #4CAF50;
+  background: #111827;
   color: white;
   border: none;
   border-radius: 5px;
@@ -48,7 +48,7 @@ button {
 }
 
 button:hover {
-  background: #45a049;
+  background: #111827;
 }
 
 .toggle {

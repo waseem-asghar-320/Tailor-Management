@@ -13,7 +13,7 @@ function Header({ setOpen, open }) {
     navigate("/login"); // go to login page on logout
   };
   return (
-    <div>
+    <div id="home">
       {/* Top bar */}
       <div className={styles.navbar} style={{left: open ? "250px" : "0px",
         width: open ? "calc(100% - 250px)" : "100%",}}>
