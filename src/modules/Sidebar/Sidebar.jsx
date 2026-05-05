@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Sidebar.module.css";
+import { useNavigate } from "react-router-dom";
 
 import { FaHome, FaUsers, FaFileInvoice, FaReceipt, FaChartBar, FaCog } from "react-icons/fa";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
@@ -11,6 +12,7 @@ function Sidebar({ open, setOpen }) {
   const toggleMenu = (menu) => {
     setActive(active === menu ? null : menu);
   };
+  const navigate = useNavigate();
 
   return (
     <div className={`${styles.sidebar} ${open ? styles.show : ""}`}>
@@ -40,8 +42,10 @@ function Sidebar({ open, setOpen }) {
         </div>
         {active === "customers" && (
           <div className={styles.sub}>
-            <p>Receipt</p>
-            <p>Shalwaar Qameez</p>
+            <p onClick={() => navigate("/booking-form")}>Booking</p>
+            <p onClick={() => navigate("/delivery-form")}>Delivery</p>
+            <p onClick={() => navigate("/receipt-form")}>Receipt</p>
+            <p onClick={() => navigate("/shalwaar-kameez-form")}>Shalwaar Qameez</p>
             <p>Delivery Report</p>
             <p>Customer Ledger</p>
             <p>Customer Balances</p>

@@ -19,16 +19,13 @@ function Dashboard() {
       <Sidebar open={open} setOpen={setOpen} />
 
       <div
-        className={styles.main}
-        style={{
-          marginLeft: open ? "250px" : "0px",
-          transition: "0.3s"
-        }}
-      >
+        className={styles.main} style={{marginLeft: open ? "250px" : "0px",transition: "0.3s" }}>
        <Header setOpen={setOpen} open={open} />
-       <div>
-        <br /><br /><br />
-        <h1 className={styles.heading}>Dashboard</h1>
+        <div>  
+          
+       <br /><br /><br />
+ 
+      <h1 className={styles.heading}>Dashboard</h1>
        </div>
 
 

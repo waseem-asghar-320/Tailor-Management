@@ -2,7 +2,7 @@ import React from "react";
 import "./ShalwarKameez.css";
 
 
-export default function ShalwarKameez() {
+export default function ShalwaarKameez() {
   const labels = [
     "Length","Shoulder","Arm","Chest","Waist",
     "Front","Daman","Collar","Shalwar Length","Paancha","Aasan"

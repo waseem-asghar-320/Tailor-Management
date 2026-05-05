@@ -39,7 +39,7 @@ function Customers() {
     if (title === "Booking") navigate("/booking-form");
     else if (title === "Delivery") navigate("/delivery-form");
     else if (title === "Receipt") navigate("/receipt-form");
-    else if (title === "Shalwaar Qameez") navigate("/shalwaar-qameez-form");
+    else if (title === "Shalwaar Qameez") navigate("/shalwaar-kameez-form");
     else if (title === "Delivery Report") navigate("/delivery-report");
     else if (title === "Customer Ledger") navigate("/customer-ledger-form");
     else if (title === "Customer Balances") navigate("/customer-balances-form");

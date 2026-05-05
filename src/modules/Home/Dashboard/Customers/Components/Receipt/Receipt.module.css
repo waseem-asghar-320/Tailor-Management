@@ -1,0 +1,84 @@
+.page {
+  padding: 20px;
+  background: #f4f4f4;
+}
+
+.actions {
+  margin-bottom: 20px;
+}
+
+.actions button {
+  padding: 10px 15px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* 📄 A4 Layout */
+.receipt {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  padding: 20mm;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Header */
+.header {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* Billing */
+.billing {
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* 🖨️ PRINT STYLES */
+@media print {
+  body {
+    background: white;
+  }
+
+  .page {
+    padding: 0;
+    background: none;
+  }
+
+  .actions {
+    display: none;
+  }
+
+  .receipt {
+    box-shadow: none;
+    margin: 0;
+  }
+}

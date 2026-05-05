@@ -4,11 +4,21 @@
   top: 0;
   width: 225px;
   height: 100vh;
+  overflow-y: auto;
   background: #111827; 
   color: white;
   transition: 0.3s;
   padding: 15px;
   z-index: 1000;
+   /* Hide scrollbar (Firefox) */
+  scrollbar-width: none;
+
+  /* Hide scrollbar (IE & Edge) */
+  -ms-overflow-style: none;
+}
+/* Hide scrollbar (Chrome, Safari) */
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .show {
