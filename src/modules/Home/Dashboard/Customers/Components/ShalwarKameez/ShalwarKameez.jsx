@@ -1,92 +1,129 @@
-import React from "react";
-import "./ShalwarKameez.css";
+import { useState } from "react";
+import styles from "./ShalwarKameez.module.css";
 
+function ShalwarKameez() {
+  const [measurement, setMeasurement] = useState({
+    client_id: 1,
+    garment_type: "shirt",
+    shoulder: "",
+    chest: "",
+    waist: "",
+    hip: "",
+    sleeve: "",
+    bicep: "",
+    wrist: "",
+    neck: "",
+    arm_hole: "",
+    length: "",
+    inseam: "",
+    outseam: "",
+    notes: ""
+  });
 
-export default function ShalwaarKameez() {
-  const labels = [
-    "Length","Shoulder","Arm","Chest","Waist",
-    "Front","Daman","Collar","Shalwar Length","Paancha","Aasan"
-  ];
+  const handleChange = (e) => {
+    setMeasurement({
+      ...measurement,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("Measurement Data:", measurement);
+
+    // API call here
+  };
 
   return (
-    <div className="page">
-      <h2>Shalwar-Kameez</h2>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h2>Customer Measurements</h2>
 
-      {/* 🔵 TOP HEADER */}
-      <div className="topbar">
-        <input placeholder="Record No (Auto)" disabled />
-        <input placeholder="Booking No" />
-        <div className="customer">
-          <input placeholder="Customer Code" />
-          <button className="searchBtn">🔍</button>
-        </div>
-        <input placeholder="Customer Name" />
-        <input type="date" />
-        <input type="date" />
-        <div className="functionKeys">F7:1/4 &nbsp; F8:1/2 &nbsp; F9:3/4</div>
-      </div>
+        <form onSubmit={handleSubmit}>
 
-      {/* 🔵 MAIN GRID */}
-      <div className="mainGrid">
+          <div className={styles.grid}>
 
-        {/* LEFT LABEL COLUMN */}
-        <div className="labels">
-          {labels.map(l => <label key={l}>{l}</label>)}
-        </div>
+            {/* Client ID */}
+            <div className={styles.field}>
+              <label>Client ID</label>
+              <input
+                type="number"
+                name="client_id"
+                value={measurement.client_id}
+                onChange={handleChange}
+              />
+            </div>
 
-        {/* SIZE 1 */}
-        <div className="sizes">
-          <h4>Size 1</h4>
-          {labels.map(l => <input key={l} />)}
-        </div>
+            {/* Garment Type */}
+            <div className={styles.field}>
+              <label>Garment Type</label>
 
-        {/* SIZE 2 */}
-        <div className="sizes">
-          <h4>Size 2</h4>
-          {labels.map(l => <input key={l+"2"} />)}
-        </div>
+              <select
+                name="garment_type"
+                value={measurement.garment_type}
+                onChange={handleChange}
+              >
+                <option value="shirt">Shirt</option>
+                <option value="pant">Pant</option>
+                <option value="shalwar_kameez">
+                  Shalwar Kameez
+                </option>
+              </select>
+            </div>
 
-        {/* 🔵 RIGHT DESIGN PANEL */}
-        <div className="designPanel">
+            {/* Measurements */}
+            {[
+              "shoulder",
+              "chest",
+              "waist",
+              "hip",
+              "sleeve",
+              "bicep",
+              "wrist",
+              "neck",
+              "arm_hole",
+              "length",
+              "inseam",
+              "outseam"
+            ].map((field) => (
+              <div className={styles.field} key={field}>
+                <label>
+                  {field.replace("_", " ").toUpperCase()}
+                </label>
 
-          <button className="blueBtn">Arm</button>
-          <button className="blueBtn">Cuff</button>
-          <button className="blueBtn">Btn Patti</button>
-          <button className="blueBtn">Pocket</button>
-          <button className="blueBtn">Collar</button>
-          <button className="blueBtn">Design</button>
+                <input
+                  type="text"
+                  name={field}
+                  value={measurement[field]}
+                  onChange={handleChange}
+                  placeholder={`Enter ${field}`}
+                />
+              </div>
+            ))}
 
-          <select><option>Shoulder down</option></select>
+            {/* Notes */}
+            <div className={styles.fullWidth}>
+              <label>Notes</label>
 
-          <div className="checks">
-            <label><input type="checkbox"/> Nokdar Tera</label>
-            <label><input type="checkbox"/> Kaf Dbl Kaj</label>
-            <label><input type="checkbox"/> Patti Dbl Bukram</label>
-            <label><input type="checkbox"/> No Lbl</label>
-            <label><input type="checkbox"/> Shoulder Patti</label>
+              <textarea
+                name="notes"
+                value={measurement.notes}
+                onChange={handleChange}
+                placeholder="Extra instructions..."
+              />
+            </div>
+
           </div>
 
-          <select><option>Button Qty</option></select>
-          <select><option>Button Type</option></select>
+          <button type="submit">
+            Save Measurements
+          </button>
 
-          <div className="radio">
-            <p>Shalwar Zip</p>
-            <label><input type="radio" name="zip"/> 1 Zip</label>
-            <label><input type="radio" name="zip"/> 2 Zip</label>
-            <label><input type="radio" name="zip"/> None</label>
-          </div>
-
-        </div>
+        </form>
       </div>
-
-      {/* 🔵 BOTTOM */}
-      <textarea placeholder="Remarks..." />
-      <div className="tableHeader">
-        <span>Item</span>
-        <span>Qty</span>
-        <span>Amount</span>
-      </div>
-
     </div>
   );
 }
+
+export default ShalwarKameez;

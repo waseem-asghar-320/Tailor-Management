@@ -1,60 +1,87 @@
-.wrapper {
+.container {
+  padding: 20px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label,
+.fullWidth label {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.fullWidth textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+ outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.fullWidth textarea:focus {
+  border-color: #3498db;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fullWidth textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.checks {
+  margin-top: 20px;
   display: flex;
   gap: 20px;
 }
-.innerWrapper {
-  cursor: pointer;
-  margin-top: 20px;
+
+.checks label {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: 35%;
-  border-radius: 50%;
-
-  background-color: #2c3e50;
-}
-.logo{
-  
- 
-  /* display: flex; */
-  font-size: 120px;
-
-  border-radius: 50%;
-  color: white;
-}
-.heading {
-  color: white; 
-  font-size: 50px;
-  font-weight: bold;
-}
-.container {
-  width: 50%;
-  float: right;
-  padding: 20px;
-  background: #f5f5f5;
-}
-
-form {
-  /* margin-right: 30px; */
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-.itemRow {
-  display: flex;
-  gap: 10px;
+  gap: 6px;
 }
 
 button {
-  padding: 10px;
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
   background: #2c3e50;
   color: white;
-  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #1f2d3a;
 }

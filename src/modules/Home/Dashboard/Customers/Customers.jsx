@@ -62,17 +62,17 @@ function Customers() {
         <div className={styles.grid}>
           {data.map((item, index) => (
             <div key={index} className={styles.card} onClick={() => handleClick(item.title)}
-              style={{ cursor: "pointer",backgroundColor: item.bg}} >
+              style={{ cursor: "pointer"}} >
            
              
 
-              <div className={styles.icon} style={{ color: item.color,backgroundColor: item.bg,}}>
+              <div className={styles.icon} style={{ color: item.color,}}>
 
               {item.icon}
 
               </div>
 
-              <p style={{ color: item.color }}>
+              <p>
               {item.title}
               </p>
             </div>

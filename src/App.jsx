@@ -7,7 +7,16 @@ import FindBooking from "./modules/Home/Dashboard/Customers/Components/Find-Book
 import ShalwaarKameez from "./modules/Home/Dashboard/Customers/Components/ShalwarKameez/ShalwarKameez.jsx";
 import Receipt from "./modules/Home/Dashboard/Customers/Components/Receipt/Receipt.jsx";
 import Sales from "./modules/Home/Dashboard/Reports/Sales.jsx";
+import Layout from "./modules/Home/Dashboard/Layout/Layout.jsx";
+import DeliveryReport from "./modules/Home/Dashboard/Customers/Components/DeliveryReport/DeliveryReport.jsx";
+import CustomerLedger from "./modules/Home/Dashboard/Customers/Components/CustomerLedger/CustomerLedger.jsx";
+import AddCustomer from "./modules/Home/Dashboard/Customers/Components/AddEditCustomers/AddCustomer.jsx";
 
+// invoice section
+import Purchase from "./modules/Home/Dashboard/Invoices/Components/Purchase/Purchase.jsx";
+
+// Production Section
+import Cutting from "./modules/Home/Dashboard/Production/Components/Cutting/Cutting.jsx";
 // const Navigate = useNavigate();
 
 function App() {
@@ -17,30 +26,108 @@ function App() {
       path: "/",
       element: <Navigate to="/login" />
     },
+    {
+      path: "/login",
+      element: <Login />
+    },
     
     {
       path: "/dashboard",
-      element: <Dashboard />
+      element: (
+        <Layout>
+          <Dashboard />
+        </Layout>
+      )
     },
     {
       path: "/booking-form",
-      element: <Booking />
+      element: (
+        <Layout>
+          <Booking />
+        </Layout>
+      )
     },
     {
       path: "/shalwaar-kameez-form",
-      element: <ShalwaarKameez />
+      element: (
+        <Layout>
+          <ShalwaarKameez />
+        </Layout>
+      )
     },
     {
       path: "/delivery-form",
-      element: <Delivery />
+      element: (
+        <Layout>
+          <Delivery />
+        </Layout>
+      )
     },
     {
       path: "/find-bookings-form",
-      element: <FindBooking />
+      element: (
+        <Layout>
+          <FindBooking />
+        </Layout>
+      )
     },
     {
       path: "/receipt-form",
-      element: <Receipt />
+      element: (
+        <Layout>
+          <Receipt />
+        </Layout>
+      )
+    },
+    {
+      path: "/delivery-report",
+      element: (
+        <Layout>
+          <DeliveryReport />
+        </Layout>
+      )         
+    },
+    {
+      path: "/customer-ledger-form",
+      element: (
+        <Layout>
+          <CustomerLedger />
+        </Layout>
+      )
+    },
+    {
+      path: "/add-edit-customers-form",
+      element: (
+        <Layout>
+          <AddCustomer />
+        </Layout>
+      )   
+    },
+    // purchase section path
+    {
+      path: "/purchase-form",
+      element: (
+        <Layout>
+          <Purchase />
+        </Layout>
+      )   
+    },
+    {
+      path: "/purchase-return-form",
+      element: (
+        <Layout>
+          <Purchase />
+        </Layout>
+      )   
+    },
+    //Production section
+    {
+      path: "/cutting-form",
+      element: (
+        <Layout>
+          <Cutting />
+        </Layout>
+      )   
     },
     {
       path: "/sales",

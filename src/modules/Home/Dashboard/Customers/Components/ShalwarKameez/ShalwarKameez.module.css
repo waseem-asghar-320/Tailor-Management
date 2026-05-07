@@ -47,6 +47,9 @@
 .fullWidth textarea:focus {
   border-color: #3498db;
 }
+input, textarea, select{
+  width: 90%;
+}
 
 .fullWidth {
   grid-column: 1 / -1;

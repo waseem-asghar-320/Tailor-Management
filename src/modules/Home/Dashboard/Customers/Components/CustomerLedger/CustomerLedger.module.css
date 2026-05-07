@@ -1,0 +1,67 @@
+.container {
+  padding: 20px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* Top bar */
+.topBar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.topBar input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.customerInfo {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: #f5f5f5;
+  border-left: 4px solid #007bff;
+}
+
+/* Summary */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Colors */
+.debit {
+  color: red;
+  font-weight: bold;
+}
+
+.credit {
+  color: green;
+  font-weight: bold;
+}
+
+.balance {
+  font-weight: bold;
+}

@@ -2,98 +2,139 @@ import { useState } from "react";
 import styles from "./Delivery.module.css";
 
 function Delivery() {
-  const [search, setSearch] = useState("");
-  const [booking, setBooking] = useState(null);
-  const [paidNow, setPaidNow] = useState(0);
-  const [method, setMethod] = useState("Cash");
+  const [delivery, setDelivery] = useState({
+    order_id: 1,
+    client_id: 2,
+    delivery_type: "home",
+    status: "ready",
+    delivery_date: "",
+    received_by: "",
+    notes: ""
+  });
 
-  // 🔍 Search Booking
-  const handleSearch = async () => {
-    const res = await fetch(`http://localhost:5000/booking/${search}`);
-    const data = await res.json();
-    setBooking(data);
+  const handleChange = (e) => {
+    setDelivery({
+      ...delivery,
+      [e.target.name]: e.target.value
+    });
   };
 
-  // 💰 Calculate remaining
-  const remaining =
-    booking ? booking.total - booking.advance - paidNow : 0;
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // ✅ Mark Delivered
-  const handleDeliver = async () => {
-    if (!booking) return;
+    console.log("Delivery Data:", delivery);
 
-    if (booking.status !== "Ready") {
-      alert("Order is not ready yet!");
-      return;
-    }
-
-    await fetch(`http://localhost:5000/deliver/${booking._name}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        paidNow,
-        method
-      })
-    });
-
-    alert("Order Delivered!");
-    setBooking(null);
+    // API call here
   };
 
   return (
     <div className={styles.container}>
-      <h2>Delivery Section</h2>
+      <div className={styles.card}>
 
-      {/* 🔍 Search */}
-      <div className={styles.searchBox}>
-        <input
-          type="text"
-          placeholder="Enter Phone or Customer Name"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <span>
-        <button onClick={handleSearch} style={{backgroundColor: "#111827", color: "white"}}>Search</button>
-        </span>
-      </div>
+        <h2>Delivery Form</h2>
 
-      {/* 📋 Booking Details */}
-      {booking && (
-        <div className={styles.card}>
-          <h3>{booking.customerName}</h3>
-          <p>{booking.phone}</p>
+        <form onSubmit={handleSubmit}>
 
-          <h4>Items</h4>
-          {booking.items.map((item, i) => (
-            <div key={i}>
-              {item.itemType} - {item.quantity} x {item.price}
+          <div className={styles.grid}>
+
+            {/* Order ID */}
+            <div className={styles.field}>
+              <label>Order ID</label>
+
+              <input
+                type="number"
+                name="order_id"
+                value={delivery.order_id}
+                onChange={handleChange}
+              />
             </div>
-          ))}
 
-          <hr />
+            {/* Client ID */}
+            <div className={styles.field}>
+              <label>Client ID</label>
 
-          <p>Total: {booking.total}</p>
-          <p>Advance: {booking.advance}</p>
-          <p>Remaining: {remaining}</p>
+              <input
+                type="number"
+                name="client_id"
+                value={delivery.client_id}
+                onChange={handleChange}
+              />
+            </div>
 
-          {/* 💰 Payment */}
-          <input
-            type="number"
-            placeholder="Paid Now"
-            onChange={(e) => setPaidNow(Number(e.target.value))}
-          />
+            {/* Delivery Type */}
+            <div className={styles.field}>
+              <label>Delivery Type</label>
 
-          <select onChange={(e) => setMethod(e.target.value)}>
-            <option>Cash</option>
-            <option>Online</option>
-          </select>
+              <select
+                name="delivery_type"
+                value={delivery.delivery_type}
+                onChange={handleChange}
+              >
+                <option value="home">Home</option>
+                <option value="shop">Shop Pickup</option>
+              </select>
+            </div>
 
-          {/* 🚚 Deliver Button */}
-          <button onClick={handleDeliver}>
-            Mark as Delivered
+            {/* Status */}
+            <div className={styles.field}>
+              <label>Status</label>
+
+              <select
+                name="status"
+                value={delivery.status}
+                onChange={handleChange}
+              >
+                <option value="ready">Ready</option>
+                <option value="pending">Pending</option>
+                <option value="delivered">Delivered</option>
+              </select>
+            </div>
+
+            {/* Delivery Date */}
+            <div className={styles.field}>
+              <label>Delivery Date</label>
+
+              <input
+                type="date"
+                name="delivery_date"
+                value={delivery.delivery_date}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Received By */}
+            <div className={styles.field}>
+              <label>Received By</label>
+
+              <input
+                type="text"
+                name="received_by"
+                value={delivery.received_by}
+                onChange={handleChange}
+                placeholder="Receiver name"
+              />
+            </div>
+
+            {/* Notes */}
+            <div className={styles.fullWidth}>
+              <label>Notes</label>
+
+              <textarea
+                name="notes"
+                value={delivery.notes}
+                onChange={handleChange}
+                placeholder="Extra instructions..."
+              />
+            </div>
+
+          </div>
+
+          <button type="submit">
+            Save Delivery
           </button>
-        </div>
-      )}
+
+        </form>
+      </div>
     </div>
   );
 }

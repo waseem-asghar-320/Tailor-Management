@@ -26,11 +26,22 @@ function Sidebar({ open, setOpen }) {
       </div>
       <hr />
       {/* HOME */}
-      <div className={styles.item} onClick={() =>
-    document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })
-  }>
-        <FaHome /> <span>HOME</span>
-      </div>
+      <div
+  className={styles.item}
+  onClick={() => {
+    // 1. Navigate to dashboard
+    navigate("/dashboard");
+
+    // 2. Scroll to top AFTER navigation
+    setTimeout(() => {
+      document
+        .getElementById("home")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  }}
+>
+  <FaHome /> <span>HOME</span>
+</div>
 
      
 
@@ -46,7 +57,7 @@ function Sidebar({ open, setOpen }) {
             <p onClick={() => navigate("/delivery-form")}>Delivery</p>
             <p onClick={() => navigate("/receipt-form")}>Receipt</p>
             <p onClick={() => navigate("/shalwaar-kameez-form")}>Shalwaar Qameez</p>
-            <p>Delivery Report</p>
+            <p onClick={() => navigate("/delivery-report")}>Delivery Report</p>
             <p>Customer Ledger</p>
             <p>Customer Balances</p>
             <p>Home Delivery List</p>

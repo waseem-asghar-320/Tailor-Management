@@ -1,126 +1,323 @@
 import { useState } from "react";
 import styles from "./Booking.module.css";
-import { GiSewingMachine } from "react-icons/gi";
-import Header from "../../../Header/Header";
 
 function Booking() {
-  const [form, setForm] = useState({
-    customerName: "",
+  const [booking, setBooking] = useState({
+    ref_no: "",
+    inv_book_no: "",
+    customer_id: 1,
+    customer_name: "",
     phone: "",
-    deliveryDate: "",
-    items: [
-      { itemType: "", quantity: 1, price: 0 }
-    ],
-    advance: 0
+    booking_date: "",
+    delivery_date: "",
+    first_trial: "",
+    final_trial: "",
+    urgent: 0,
+    after_eid: 0,
+    home_delivery: 0,
+    remarks: "",
+    total: "",
+    discount: "",
+    net_total: "",
+    paid_amount: "",
+    balance: "",
+    payment_method: "cash",
+    user: "admin",
+    status: "pending",
+    advance_payment: "",
+    delivery_address: "",
+    assigned_worker_id: ""
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+    const { name, value, type, checked } = e.target;
 
-  const handleItemChange = (index, e) => {
-    const updatedItems = [...form.items];
-    updatedItems[index][e.target.name] = e.target.value;
-    setForm({ ...form, items: updatedItems });
-  };
-
-  const addItem = () => {
-    setForm({
-      ...form,
-      items: [...form.items, { itemType: "", quantity: 1, price: 0 }]
+    setBooking({
+      ...booking,
+      [name]: type === "checkbox" ? (checked ? 1 : 0) : value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Booking Data:", form);
+    console.log("Booking Data:", booking);
 
-    // TODO: send to backend (API)
+    // API call here
   };
-  const [open, setOpen] = useState(false);
 
   return (
-    <>
-      
-       <Header open={open} setOpen={setOpen} />
-    <div className={styles.wrapper}>
-    <div className={styles.innerWrapper}>
-    <h2 className={styles.logo}> <GiSewingMachine /></h2>
-    <h2 className={styles.heading}>Tailor Soft</h2>
-    </div>
     <div className={styles.container}>
-      <h2>Add Booking</h2>
+      <div className={styles.card}>
 
-      <form onSubmit={handleSubmit}>
-        {/* Customer Info */}
-        <input
-          type="text"
-          name="customerName"
-          placeholder="Customer Name"
-          onChange={handleChange}
-          required
-        />
+        <h2>Booking Form</h2>
 
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone Number"
-          onChange={handleChange}
-          required
-        />
+        <form onSubmit={handleSubmit}>
 
-        {/* Delivery */}
-        <input
-          type="date"
-          name="deliveryDate"
-          onChange={handleChange}
-        />
+          <div className={styles.grid}>
 
-        {/* Items */}
-        <h3>Items</h3>
-        {form.items.map((item, index) => (
-          <div key={index} className={styles.itemRow}>
-            <input
-              type="text"
-              name="itemType"
-              placeholder="Item (Shirt/Pant)"
-              onChange={(e) => handleItemChange(index, e)}
-            />
+            {/* Reference */}
+            <div className={styles.field}>
+              <label>Reference No</label>
+              <input
+                type="text"
+                name="ref_no"
+                value={booking.ref_no}
+                onChange={handleChange}
+              />
+            </div>
 
-            <input
-              type="number"
-              name="quantity"
-              placeholder="Qty"
-              onChange={(e) => handleItemChange(index, e)}
-            />
+            <div className={styles.field}>
+              <label>Invoice Book No</label>
+              <input
+                type="text"
+                name="inv_book_no"
+                value={booking.inv_book_no}
+                onChange={handleChange}
+              />
+            </div>
 
-            <input
-              type="number"
-              name="price"
-              placeholder="Price"
-              onChange={(e) => handleItemChange(index, e)}
-            />
+            {/* Customer */}
+            <div className={styles.field}>
+              <label>Customer ID</label>
+              <input
+                type="number"
+                name="customer_id"
+                value={booking.customer_id}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Customer Name</label>
+              <input
+                type="text"
+                name="customer_name"
+                value={booking.customer_name}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Phone</label>
+              <input
+                type="text"
+                name="phone"
+                value={booking.phone}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Dates */}
+            <div className={styles.field}>
+              <label>Booking Date</label>
+              <input
+                type="datetime-local"
+                name="booking_date"
+                value={booking.booking_date}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Delivery Date</label>
+              <input
+                type="date"
+                name="delivery_date"
+                value={booking.delivery_date}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>First Trial</label>
+              <input
+                type="date"
+                name="first_trial"
+                value={booking.first_trial}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Final Trial</label>
+              <input
+                type="date"
+                name="final_trial"
+                value={booking.final_trial}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Payment */}
+            <div className={styles.field}>
+              <label>Total</label>
+              <input
+                type="number"
+                name="total"
+                value={booking.total}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Discount</label>
+              <input
+                type="number"
+                name="discount"
+                value={booking.discount}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Net Total</label>
+              <input
+                type="number"
+                name="net_total"
+                value={booking.net_total}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Paid Amount</label>
+              <input
+                type="number"
+                name="paid_amount"
+                value={booking.paid_amount}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Balance</label>
+              <input
+                type="number"
+                name="balance"
+                value={booking.balance}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.field}>
+              <label>Advance Payment</label>
+              <input
+                type="number"
+                name="advance_payment"
+                value={booking.advance_payment}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Payment Method */}
+            <div className={styles.field}>
+              <label>Payment Method</label>
+
+              <select
+                name="payment_method"
+                value={booking.payment_method}
+                onChange={handleChange}
+              >
+                <option value="cash">Cash</option>
+                <option value="bank">Bank</option>
+                <option value="easypaisa">EasyPaisa</option>
+                <option value="jazzcash">JazzCash</option>
+              </select>
+            </div>
+
+            {/* Status */}
+            <div className={styles.field}>
+              <label>Status</label>
+
+              <select
+                name="status"
+                value={booking.status}
+                onChange={handleChange}
+              >
+                <option value="pending">Pending</option>
+                <option value="in_progress">In Progress</option>
+                <option value="ready">Ready</option>
+                <option value="delivered">Delivered</option>
+              </select>
+            </div>
+
+            {/* Worker */}
+            <div className={styles.field}>
+              <label>Assigned Worker ID</label>
+
+              <input
+                type="number"
+                name="assigned_worker_id"
+                value={booking.assigned_worker_id}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Delivery Address */}
+            <div className={styles.fullWidth}>
+              <label>Delivery Address</label>
+
+              <textarea
+                name="delivery_address"
+                value={booking.delivery_address}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Remarks */}
+            <div className={styles.fullWidth}>
+              <label>Remarks</label>
+
+              <textarea
+                name="remarks"
+                value={booking.remarks}
+                onChange={handleChange}
+              />
+            </div>
+
           </div>
-        ))}
 
-        <button type="button" onClick={addItem}>
-          + Add Item
-        </button>
+          {/* Checkboxes */}
+          <div className={styles.checks}>
+            <label>
+              <input
+                type="checkbox"
+                name="urgent"
+                checked={booking.urgent}
+                onChange={handleChange}
+              />
+              Urgent
+            </label>
 
-        {/* Payment */}
-        <input
-          type="number"
-          name="advance"
-          placeholder="Advance Payment"
-          onChange={handleChange}
-        />
+            <label>
+              <input
+                type="checkbox"
+                name="after_eid"
+                checked={booking.after_eid}
+                onChange={handleChange}
+              />
+              After Eid
+            </label>
 
-        <button type="submit">Save Booking</button>
-      </form>
+            <label>
+              <input
+                type="checkbox"
+                name="home_delivery"
+                checked={booking.home_delivery}
+                onChange={handleChange}
+              />
+              Home Delivery
+            </label>
+          </div>
+
+          <button type="submit">
+            Save Booking
+          </button>
+
+        </form>
+      </div>
     </div>
-    </div>
-    </>
   );
 }
 
