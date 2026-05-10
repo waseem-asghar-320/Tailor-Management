@@ -1,82 +1,75 @@
 .container {
-  padding: 20px;
-  background: #f4f6f9;
   min-height: 100vh;
+  background: #f4f6f9;
+  padding: 20px;
 }
 
 .card {
   background: white;
-  padding: 25px;
   border-radius: 14px;
+  padding: 25px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-.card h2 {
+.heading {
   margin-bottom: 20px;
   color: #2c3e50;
 }
 
+/* Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 15px;
 }
 
+/* Fields */
 .field {
   display: flex;
   flex-direction: column;
 }
 
-.field label,
-.fullWidth label {
-  margin-bottom: 5px;
+.field label {
+  margin-bottom: 6px;
   font-weight: 600;
+  color: #34495e;
 }
 
 .field input,
-.field select,
-.fullWidth textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
+.field select {
+  padding: 11px;
+  border: 1px solid #dcdcdc;
   border-radius: 8px;
   outline: none;
+  transition: 0.3s;
 }
 
 .field input:focus,
-.field select:focus,
-.fullWidth textarea:focus {
+.field select:focus {
   border-color: #3498db;
 }
 
-.fullWidth {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-}
-
-.fullWidth textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.totalBox {
+/* Summary */
+.summary {
   margin-top: 20px;
   padding: 15px;
   background: #ecf0f1;
   border-radius: 10px;
 }
 
-.totalBox h3 {
+.summary h3 {
+  margin: 5px 0;
   color: #2c3e50;
 }
 
+/* Button */
 button {
   margin-top: 20px;
   padding: 12px 20px;
   border: none;
+  border-radius: 8px;
   background: #2c3e50;
   color: white;
-  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
 }

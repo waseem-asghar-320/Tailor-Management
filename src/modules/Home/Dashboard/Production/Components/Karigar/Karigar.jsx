@@ -1,18 +1,19 @@
 import { useState } from "react";
-import styles from "./Cutting.module.css";
+import styles from "./Karigar.module.css";
 
-function Cutting() {
+function Karigar() {
 
   const [order, setOrder] = useState({
-    cutter_name: "",
+    kariger_name: "",
     order_date: "",
     customer_code: "",
     customer_name: "",
-    last_cutter: "",
+    last_kariger: "",
     item_name: "",
     qty: "",
     rate: "",
-    remarks: ""
+    remarks: "",
+    status: "pending"
   });
 
   const handleChange = (e) => {
@@ -25,7 +26,7 @@ function Cutting() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Cutter Order:", order);
+    console.log("Kariger Order:", order);
 
     // API call here
   };
@@ -35,22 +36,22 @@ function Cutting() {
 
       <div className={styles.card}>
 
-        <h2>Cutter Order Form</h2>
+        <h2>Kariger Work Order</h2>
 
         <form onSubmit={handleSubmit}>
 
           <div className={styles.grid}>
 
-            {/* Cutter Name */}
+            {/* Kariger Name */}
             <div className={styles.field}>
-              <label>Cutter Name</label>
+              <label>Kariger Name</label>
 
               <input
                 type="text"
-                name="cutter_name"
-                value={order.cutter_name}
+                name="kariger_name"
+                value={order.kariger_name}
                 onChange={handleChange}
-                placeholder="Enter cutter name"
+                placeholder="Enter kariger name"
               />
             </div>
 
@@ -92,16 +93,16 @@ function Cutting() {
               />
             </div>
 
-            {/* Last Cutter */}
+            {/* Last Kariger */}
             <div className={styles.field}>
-              <label>Last Cutter</label>
+              <label>Last Kariger</label>
 
               <input
                 type="text"
-                name="last_cutter"
-                value={order.last_cutter}
+                name="last_kariger"
+                value={order.last_kariger}
                 onChange={handleChange}
-                placeholder="Previous cutter"
+                placeholder="Previous kariger"
               />
             </div>
 
@@ -150,6 +151,21 @@ function Cutting() {
               />
             </div>
 
+            {/* Status */}
+            <div className={styles.field}>
+              <label>Status</label>
+
+              <select
+                name="status"
+                value={order.status}
+                onChange={handleChange}
+              >
+                <option value="pending">Pending</option>
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+
             {/* Remarks */}
             <div className={styles.fullWidth}>
               <label>Remarks</label>
@@ -173,7 +189,7 @@ function Cutting() {
           </div>
 
           <button type="submit">
-            Save Order
+            Save Work Order
           </button>
 
         </form>
@@ -184,4 +200,4 @@ function Cutting() {
   );
 }
 
-export default Cutting;
+export default Karigar;

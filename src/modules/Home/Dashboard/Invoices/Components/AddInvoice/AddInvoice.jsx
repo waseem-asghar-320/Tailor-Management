@@ -1,19 +1,19 @@
 import { useState } from "react";
-import styles from "./Purchase.module.css";
+import styles from "./AddInvoice.module.css";
 
-function Purchase() {
+function AddInvoice() {
 
-  const [purchase, setPurchase] = useState({
+  const [form, setForm] = useState({
     type: "purchase",
     date: "",
     supplier_id: 1,
-    total_amount: "",
-    net_amount: ""
+    total_amount: 5000,
+    net_amount: 4800
   });
 
   const handleChange = (e) => {
-    setPurchase({
-      ...purchase,
+    setForm({
+      ...form,
       [e.target.name]: e.target.value
     });
   };
@@ -21,7 +21,7 @@ function Purchase() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Purchase Data:", purchase);
+    console.log("Purchase Entry:", form);
 
     // API call here
   };
@@ -31,7 +31,9 @@ function Purchase() {
 
       <div className={styles.card}>
 
-        <h2>Purchase Form</h2>
+        <h2 className={styles.heading}>
+          Purchase Entry
+        </h2>
 
         <form onSubmit={handleSubmit}>
 
@@ -43,11 +45,11 @@ function Purchase() {
 
               <select
                 name="type"
-                value={purchase.type}
+                value={form.type}
                 onChange={handleChange}
               >
                 <option value="purchase">Purchase</option>
-                <option value="expense">Expense</option>
+                <option value="return">Return</option>
               </select>
             </div>
 
@@ -58,7 +60,7 @@ function Purchase() {
               <input
                 type="date"
                 name="date"
-                value={purchase.date}
+                value={form.date}
                 onChange={handleChange}
               />
             </div>
@@ -70,7 +72,7 @@ function Purchase() {
               <input
                 type="number"
                 name="supplier_id"
-                value={purchase.supplier_id}
+                value={form.supplier_id}
                 onChange={handleChange}
               />
             </div>
@@ -82,9 +84,8 @@ function Purchase() {
               <input
                 type="number"
                 name="total_amount"
-                value={purchase.total_amount}
+                value={form.total_amount}
                 onChange={handleChange}
-                placeholder="Enter total amount"
               />
             </div>
 
@@ -95,12 +96,17 @@ function Purchase() {
               <input
                 type="number"
                 name="net_amount"
-                value={purchase.net_amount}
+                value={form.net_amount}
                 onChange={handleChange}
-                placeholder="Enter net amount"
               />
             </div>
 
+          </div>
+
+          {/* Summary */}
+          <div className={styles.summary}>
+            <h3>Total: Rs. {form.total_amount}</h3>
+            <h3>Net: Rs. {form.net_amount}</h3>
           </div>
 
           <button type="submit">
@@ -115,4 +121,4 @@ function Purchase() {
   );
 }
 
-export default Purchase;
+export default AddInvoice;

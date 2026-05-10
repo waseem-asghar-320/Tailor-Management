@@ -5,9 +5,9 @@
 }
 
 .card {
-  background: white;
+  background: #fff;
   padding: 25px;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
@@ -16,56 +16,48 @@
   color: #2c3e50;
 }
 
+/* Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 15px;
 }
 
+/* Fields */
 .field {
   display: flex;
   flex-direction: column;
 }
 
-.field label,
-.fullWidth label {
+.field label {
   margin-bottom: 5px;
   font-weight: 600;
+  color: #34495e;
 }
 
 .field input,
-.field select,
-.fullWidth textarea {
+.field select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
   outline: none;
+  transition: 0.3s;
 }
 
 .field input:focus,
-.field select:focus,
-.fullWidth textarea:focus {
+.field select:focus {
   border-color: #3498db;
 }
 
-.fullWidth {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-}
-
-.fullWidth textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
+/* Button */
 button {
   margin-top: 20px;
   padding: 12px 20px;
   border: none;
+  border-radius: 8px;
   background: #2c3e50;
   color: white;
-  border-radius: 8px;
+  font-size: 15px;
   cursor: pointer;
   transition: 0.3s;
 }

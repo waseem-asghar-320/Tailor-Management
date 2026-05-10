@@ -1,23 +1,24 @@
 import { useState } from "react";
-import styles from "./Cutting.module.css";
+import styles from "./KarigarReceiving.module.css";
 
-function Cutting() {
+function KarigarReceiving() {
 
-  const [order, setOrder] = useState({
-    cutter_name: "",
-    order_date: "",
+  const [receive, setReceive] = useState({
+    receive_from: "karigar",
+    karigar_name: "",
     customer_code: "",
     customer_name: "",
-    last_cutter: "",
+    booking_ref: "",
+    cutter_name: "",
     item_name: "",
     qty: "",
-    rate: "",
+    receiver_name: "",
     remarks: ""
   });
 
   const handleChange = (e) => {
-    setOrder({
-      ...order,
+    setReceive({
+      ...receive,
       [e.target.name]: e.target.value
     });
   };
@@ -25,7 +26,7 @@ function Cutting() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Cutter Order:", order);
+    console.log("Receive Order:", receive);
 
     // API call here
   };
@@ -35,34 +36,36 @@ function Cutting() {
 
       <div className={styles.card}>
 
-        <h2>Cutter Order Form</h2>
+        <h2>Receive Order</h2>
 
         <form onSubmit={handleSubmit}>
 
           <div className={styles.grid}>
 
-            {/* Cutter Name */}
+            {/* Receive From */}
             <div className={styles.field}>
-              <label>Cutter Name</label>
+              <label>Receive From</label>
+
+              <select
+                name="receive_from"
+                value={receive.receive_from}
+                onChange={handleChange}
+              >
+                <option value="karigar">Karigar</option>
+                <option value="cutter">Cutter</option>
+              </select>
+            </div>
+
+            {/* Karigar Name */}
+            <div className={styles.field}>
+              <label>Karigar Name</label>
 
               <input
                 type="text"
-                name="cutter_name"
-                value={order.cutter_name}
+                name="karigar_name"
+                value={receive.karigar_name}
                 onChange={handleChange}
-                placeholder="Enter cutter name"
-              />
-            </div>
-
-            {/* Order Date */}
-            <div className={styles.field}>
-              <label>Order Date</label>
-
-              <input
-                type="datetime-local"
-                name="order_date"
-                value={order.order_date}
-                onChange={handleChange}
+                placeholder="Enter karigar name"
               />
             </div>
 
@@ -73,7 +76,7 @@ function Cutting() {
               <input
                 type="text"
                 name="customer_code"
-                value={order.customer_code}
+                value={receive.customer_code}
                 onChange={handleChange}
                 placeholder="CUST-001"
               />
@@ -86,22 +89,35 @@ function Cutting() {
               <input
                 type="text"
                 name="customer_name"
-                value={order.customer_name}
+                value={receive.customer_name}
                 onChange={handleChange}
                 placeholder="Enter customer name"
               />
             </div>
 
-            {/* Last Cutter */}
+            {/* Booking Ref */}
             <div className={styles.field}>
-              <label>Last Cutter</label>
+              <label>Booking Ref</label>
 
               <input
                 type="text"
-                name="last_cutter"
-                value={order.last_cutter}
+                name="booking_ref"
+                value={receive.booking_ref}
                 onChange={handleChange}
-                placeholder="Previous cutter"
+                placeholder="BR-1001"
+              />
+            </div>
+
+            {/* Cutter Name */}
+            <div className={styles.field}>
+              <label>Cutter Name</label>
+
+              <input
+                type="text"
+                name="cutter_name"
+                value={receive.cutter_name}
+                onChange={handleChange}
+                placeholder="Enter cutter name"
               />
             </div>
 
@@ -111,7 +127,7 @@ function Cutting() {
 
               <select
                 name="item_name"
-                value={order.item_name}
+                value={receive.item_name}
                 onChange={handleChange}
               >
                 <option value="">Select Item</option>
@@ -131,22 +147,22 @@ function Cutting() {
               <input
                 type="number"
                 name="qty"
-                value={order.qty}
+                value={receive.qty}
                 onChange={handleChange}
                 placeholder="Enter quantity"
               />
             </div>
 
-            {/* Rate */}
+            {/* Receiver Name */}
             <div className={styles.field}>
-              <label>Rate</label>
+              <label>Receiver Name</label>
 
               <input
-                type="number"
-                name="rate"
-                value={order.rate}
+                type="text"
+                name="receiver_name"
+                value={receive.receiver_name}
                 onChange={handleChange}
-                placeholder="Enter rate"
+                placeholder="Receiver name"
               />
             </div>
 
@@ -156,24 +172,16 @@ function Cutting() {
 
               <textarea
                 name="remarks"
-                value={order.remarks}
+                value={receive.remarks}
                 onChange={handleChange}
-                placeholder="Extra instructions..."
+                placeholder="Extra details..."
               />
             </div>
 
           </div>
 
-          {/* Total */}
-          <div className={styles.totalBox}>
-            <h3>
-              Total Amount: Rs.{" "}
-              {(order.qty || 0) * (order.rate || 0)}
-            </h3>
-          </div>
-
           <button type="submit">
-            Save Order
+            Save Receive Entry
           </button>
 
         </form>
@@ -184,4 +192,4 @@ function Cutting() {
   );
 }
 
-export default Cutting;
+export default KarigarReceiving;

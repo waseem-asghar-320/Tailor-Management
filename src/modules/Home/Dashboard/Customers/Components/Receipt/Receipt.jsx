@@ -1,90 +1,104 @@
-import { useRef } from "react";
+import { useState } from "react";
 import styles from "./Receipt.module.css";
 
-function Receipt({ booking }) {
-  const printRef = useRef();
+function Receipt() {
 
-  const handlePrint = () => {
-    window.print();
+  const [payment, setPayment] = useState({
+    client_id: 1,
+    amount: "",
+    payment_method: "cash",
+    description: ""
+  });
+
+  const handleChange = (e) => {
+    setPayment({
+      ...payment,
+      [e.target.name]: e.target.value
+    });
   };
 
-  if (!booking) return <p>No receipt data</p>;
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const balance = booking.total - booking.advance;
+    console.log("Advance Payment:", payment);
+
+    // API call here
+  };
 
   return (
-    <div className={styles.page}>
-      <div className={styles.actions}>
-        <button onClick={handlePrint}>Print Receipt</button>
-      </div>
+    <div className={styles.container}>
 
-      {/* 🧾 A4 Receipt */}
-      <div ref={printRef} className={styles.receipt}>
-        {/* Header */}
-        <div className={styles.header}>
-          <h2>TAILOR SHOP NAME</h2>
-          <p>Address Line Here | Phone: 03XX-XXXXXXX</p>
-        </div>
+      <div className={styles.card}>
 
-        <hr />
+        <h2>Advance Payment</h2>
 
-        {/* Customer Info */}
-        <div className={styles.row}>
-          <div>
-            <p><strong>Receipt No:</strong> {booking._id}</p>
-            <p><strong>Customer:</strong> {booking.customerName}</p>
-            <p><strong>Phone:</strong> {booking.phone}</p>
+        <form onSubmit={handleSubmit}>
+
+          <div className={styles.grid}>
+
+            {/* Client ID */}
+            <div className={styles.field}>
+              <label>Client ID</label>
+
+              <input
+                type="number"
+                name="client_id"
+                value={payment.client_id}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Amount */}
+            <div className={styles.field}>
+              <label>Amount</label>
+
+              <input
+                type="number"
+                name="amount"
+                value={payment.amount}
+                onChange={handleChange}
+                placeholder="Enter amount"
+              />
+            </div>
+
+            {/* Payment Method */}
+            <div className={styles.field}>
+              <label>Payment Method</label>
+
+              <select
+                name="payment_method"
+                value={payment.payment_method}
+                onChange={handleChange}
+              >
+                <option value="cash">Cash</option>
+                <option value="bank">Bank</option>
+                <option value="easypaisa">EasyPaisa</option>
+                <option value="jazzcash">JazzCash</option>
+              </select>
+            </div>
+
+            {/* Description */}
+            <div className={styles.fullWidth}>
+              <label>Description</label>
+
+              <textarea
+                name="description"
+                value={payment.description}
+                onChange={handleChange}
+                placeholder="Enter payment details..."
+              />
+            </div>
+
           </div>
 
-          <div>
-            <p><strong>Booking Date:</strong> {booking.bookingDate}</p>
-            <p><strong>Delivery Date:</strong> {booking.deliveryDate}</p>
-            <p><strong>Status:</strong> {booking.status}</p>
-          </div>
-        </div>
+          <button type="submit">
+            Save Payment
+          </button>
 
-        <hr />
+        </form>
 
-        {/* Items */}
-        <h3>Items</h3>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Qty</th>
-              <th>Price</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {booking.items.map((item, i) => (
-              <tr key={i}>
-                <td>{item.itemType}</td>
-                <td>{item.quantity}</td>
-                <td>{item.price}</td>
-                <td>{item.quantity * item.price}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <hr />
-
-        {/* Billing */}
-        <div className={styles.billing}>
-          <p><strong>Total:</strong> {booking.total}</p>
-          <p><strong>Advance:</strong> {booking.advance}</p>
-          <p><strong>Balance:</strong> {balance}</p>
-        </div>
-
-        <hr />
-
-        {/* Footer */}
-        <div className={styles.footer}>
-          <p>Thank you for your business!</p>
-        </div>
       </div>
+
     </div>
   );
 }

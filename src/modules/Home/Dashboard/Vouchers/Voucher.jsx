@@ -2,11 +2,13 @@ import styles from './Voucher.module.css';
 import { useNavigate } from "react-router-dom";
 // 👇 import icons
 
-import { FaWallet, FaUniversity, FaHandHoldingUsd } from "react-icons/fa";
+import { FaEnvelopeOpenText,FaWallet, FaUniversity, FaHandHoldingUsd } from "react-icons/fa";
+
 
 
 
 const data = [
+   { title:"Voucher", icon:<FaEnvelopeOpenText/>, color:"#1bea08", bg:"#8afd93" },
   { title:"Petty Cash", icon:<FaWallet/>, color:"#eab308", bg:"#fde68a" },
   { title:"Bank Payment", icon:<FaUniversity/>, color:"#3b82f6", bg:"#bfdbfe" },
   { title:"Bank Receipt", icon:<FaHandHoldingUsd/>, color:"#22c55e", bg:"#bbf7d0" },
@@ -17,6 +19,7 @@ function Voucher() {
 
   const handleClick = (title) => {
     if (title === "Petty Cash") navigate("/petty-cash-form");
+    else if (title === "Voucher") navigate("/voucher-form");
     else if (title === "Bank Payment") navigate("/bank-payment-form");
     else if (title === "Bank Receipt") navigate("/bank-receipt-form");
   };

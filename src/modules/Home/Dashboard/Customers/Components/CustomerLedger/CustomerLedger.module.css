@@ -4,64 +4,72 @@
   min-height: 100vh;
 }
 
-/* Top bar */
-.topBar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.topBar input {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-.customerInfo {
-  margin: 10px 0;
-  padding: 8px 12px;
-  background: #f5f5f5;
-  border-left: 4px solid #007bff;
-}
-
-/* Summary */
-.summary {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
 .card {
   background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-/* Table */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
+.card h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
 }
 
-.table th,
-.table td {
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label,
+.fullWidth label {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.fullWidth textarea {
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
 }
 
-/* Colors */
-.debit {
-  color: red;
-  font-weight: bold;
+.field input:focus,
+.field select:focus,
+.fullWidth textarea:focus {
+  border-color: #3498db;
 }
 
-.credit {
-  color: green;
-  font-weight: bold;
+.fullWidth {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
 }
 
-.balance {
-  font-weight: bold;
+.fullWidth textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  background: #2c3e50;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #1f2d3a;
 }

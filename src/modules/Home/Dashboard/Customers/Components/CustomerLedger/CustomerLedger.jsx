@@ -1,141 +1,113 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./CustomerLedger.module.css";
 
 function CustomerLedger() {
-  const [customer, setCustomer] = useState("");
-  const [data, setData] = useState([]);
-
-  const [filters, setFilters] = useState({
-    from: "",
-    to: ""
+  const [ledger, setLedger] = useState({
+    client_id: 1,
+    type: "booking",
+    amount: "",
+    description: "",
+    ref_id: ""
   });
 
-  // 🔹 Dummy data (replace with API)
-  useEffect(() => {
-    const dummy = [
-      {
-        date: "2026-05-01",
-        desc: "Opening Balance",
-        debit: 5000,
-        credit: 0
-      },
-      {
-        date: "2026-05-03",
-        desc: "Booking B001",
-        debit: 3000,
-        credit: 0
-      },
-      {
-        date: "2026-05-05",
-        desc: "Payment",
-        debit: 0,
-        credit: 2000
-      }
-    ];
-    setData(dummy);
-  }, []);
+  const handleChange = (e) => {
+    setLedger({
+      ...ledger,
+      [e.target.name]: e.target.value
+    });
+  };
 
-  // 🔹 Filtered Data
-  const filtered = data.filter((d) => {
-    return (
-      (filters.from ? d.date >= filters.from : true) &&
-      (filters.to ? d.date <= filters.to : true)
-    );
-  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // 🔹 Running Balance
-  let runningBalance = 0;
-  const ledgerWithBalance = filtered.map((item) => {
-    runningBalance += item.debit - item.credit;
-    return { ...item, balance: runningBalance };
-  });
+    console.log("Ledger Entry:", ledger);
 
-  // 🔹 Summary
-  const totalDebit = filtered.reduce((sum, d) => sum + d.debit, 0);
-  const totalCredit = filtered.reduce((sum, d) => sum + d.credit, 0);
-  const finalBalance = totalDebit - totalCredit;
+    // API call here
+  };
 
   return (
     <div className={styles.container}>
-      <h2>Customer Ledger</h2>
+      <div className={styles.card}>
 
-{customer && (
-  <div className={styles.customerInfo}>
-    <h3>Customer: {customer}</h3>
-  </div>
-)}
+        <h2>Customer Ledger Entry</h2>
 
-      {/* 🔍 Customer + Filters */}
-      <div className={styles.topBar}>
-        <input
-          placeholder="Search Customer"
-          value={customer}
-          onChange={(e) => setCustomer(e.target.value)}
-        />
+        <form onSubmit={handleSubmit}>
 
-        <input
-          type="date"
-          onChange={(e) =>
-            setFilters({ ...filters, from: e.target.value })
-          }
-        />
+          <div className={styles.grid}>
 
-        <input
-          type="date"
-          onChange={(e) =>
-            setFilters({ ...filters, to: e.target.value })
-          }
-        />
+            {/* Client ID */}
+            <div className={styles.field}>
+              <label>Client ID</label>
+
+              <input
+                type="number"
+                name="client_id"
+                value={ledger.client_id}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Type */}
+            <div className={styles.field}>
+              <label>Type</label>
+
+              <select
+                name="type"
+                value={ledger.type}
+                onChange={handleChange}
+              >
+                <option value="booking">Booking</option>
+                <option value="payment">Payment</option>
+                <option value="adjustment">Adjustment</option>
+              </select>
+            </div>
+
+            {/* Amount */}
+            <div className={styles.field}>
+              <label>Amount</label>
+
+              <input
+                type="number"
+                name="amount"
+                value={ledger.amount}
+                onChange={handleChange}
+                placeholder="Enter amount"
+              />
+            </div>
+
+            {/* Reference ID */}
+            <div className={styles.field}>
+              <label>Reference ID</label>
+
+              <input
+                type="number"
+                name="ref_id"
+                value={ledger.ref_id}
+                onChange={handleChange}
+                placeholder="Enter reference ID"
+              />
+            </div>
+
+            {/* Description */}
+            <div className={styles.fullWidth}>
+              <label>Description</label>
+
+              <textarea
+                name="description"
+                value={ledger.description}
+                onChange={handleChange}
+                placeholder="Enter details..."
+              />
+            </div>
+
+          </div>
+
+          <button type="submit">
+            Save Ledger Entry
+          </button>
+
+        </form>
       </div>
-
-      {/* 💰 Summary */}
-      <div className={styles.summary}>
-        <div className={styles.card}>
-          <h4>Total Debit</h4>
-          <p>{totalDebit}</p>
-        </div>
-
-        <div className={styles.card}>
-          <h4>Total Credit</h4>
-          <p>{totalCredit}</p>
-        </div>
-
-        <div className={styles.card}>
-          <h4>Balance</h4>
-          <p>{finalBalance}</p>
-        </div>
-      </div>
-
-      {/* 📋 Ledger Table */}
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Debit</th>
-            <th>Credit</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {ledgerWithBalance.map((row, index) => (
-            <tr key={index}>
-              <td>{row.date}</td>
-              <td>{row.desc}</td>
-              <td className={styles.debit}>
-                {row.debit || "-"}
-              </td>
-              <td className={styles.credit}>
-                {row.credit || "-"}
-              </td>
-              <td className={styles.balance}>
-                {row.balance}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 }

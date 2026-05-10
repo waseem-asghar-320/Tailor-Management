@@ -24,9 +24,11 @@
   font-size: 22px;
   cursor: pointer;
   background: none;
+  padding: 5px;
+  margin: 0 15px 0 10px;
 }
 
 .menuBtn:hover {
-  background: none;
+  /* background: none; */
   border-radius: 5px;
 }

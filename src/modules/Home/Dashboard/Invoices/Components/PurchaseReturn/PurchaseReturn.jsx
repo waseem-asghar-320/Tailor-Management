@@ -1,19 +1,23 @@
 import { useState } from "react";
-import styles from "./Purchase.module.css";
+import styles from "./PurchaseReturn.module.css";
 
-function Purchase() {
+function PurchaseReturn() {
 
-  const [purchase, setPurchase] = useState({
-    type: "purchase",
+  const [form, setForm] = useState({
+    id: 5,
+    ref_no: "INV-1715166000",
+    type: "return",
     date: "",
     supplier_id: 1,
     total_amount: "",
-    net_amount: ""
+    net_amount: "",
+    created_at: "",
+    updated_at: ""
   });
 
   const handleChange = (e) => {
-    setPurchase({
-      ...purchase,
+    setForm({
+      ...form,
       [e.target.name]: e.target.value
     });
   };
@@ -21,7 +25,7 @@ function Purchase() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Purchase Data:", purchase);
+    console.log("Purchase Return:", form);
 
     // API call here
   };
@@ -31,11 +35,35 @@ function Purchase() {
 
       <div className={styles.card}>
 
-        <h2>Purchase Form</h2>
+        <h2>Purchase Return Form</h2>
 
         <form onSubmit={handleSubmit}>
 
           <div className={styles.grid}>
+
+            {/* ID */}
+            <div className={styles.field}>
+              <label>ID</label>
+
+              <input
+                type="number"
+                name="id"
+                value={form.id}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Reference Number */}
+            <div className={styles.field}>
+              <label>Reference No</label>
+
+              <input
+                type="text"
+                name="ref_no"
+                value={form.ref_no}
+                onChange={handleChange}
+              />
+            </div>
 
             {/* Type */}
             <div className={styles.field}>
@@ -43,11 +71,11 @@ function Purchase() {
 
               <select
                 name="type"
-                value={purchase.type}
+                value={form.type}
                 onChange={handleChange}
               >
+                <option value="return">Return</option>
                 <option value="purchase">Purchase</option>
-                <option value="expense">Expense</option>
               </select>
             </div>
 
@@ -58,7 +86,7 @@ function Purchase() {
               <input
                 type="date"
                 name="date"
-                value={purchase.date}
+                value={form.date}
                 onChange={handleChange}
               />
             </div>
@@ -70,7 +98,7 @@ function Purchase() {
               <input
                 type="number"
                 name="supplier_id"
-                value={purchase.supplier_id}
+                value={form.supplier_id}
                 onChange={handleChange}
               />
             </div>
@@ -82,7 +110,7 @@ function Purchase() {
               <input
                 type="number"
                 name="total_amount"
-                value={purchase.total_amount}
+                value={form.total_amount}
                 onChange={handleChange}
                 placeholder="Enter total amount"
               />
@@ -95,16 +123,40 @@ function Purchase() {
               <input
                 type="number"
                 name="net_amount"
-                value={purchase.net_amount}
+                value={form.net_amount}
                 onChange={handleChange}
                 placeholder="Enter net amount"
+              />
+            </div>
+
+            {/* Created At */}
+            <div className={styles.field}>
+              <label>Created At</label>
+
+              <input
+                type="datetime-local"
+                name="created_at"
+                value={form.created_at}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Updated At */}
+            <div className={styles.field}>
+              <label>Updated At</label>
+
+              <input
+                type="datetime-local"
+                name="updated_at"
+                value={form.updated_at}
+                onChange={handleChange}
               />
             </div>
 
           </div>
 
           <button type="submit">
-            Save Purchase
+            Save Return
           </button>
 
         </form>
@@ -115,4 +167,4 @@ function Purchase() {
   );
 }
 
-export default Purchase;
+export default PurchaseReturn;

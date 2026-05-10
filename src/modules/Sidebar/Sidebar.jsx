@@ -14,6 +14,12 @@ function Sidebar({ open, setOpen }) {
   };
   const navigate = useNavigate();
 
+const handleNavigate = (path) => {
+  navigate(path);
+  setOpen(false); // close sidebar
+};
+
+
   return (
     <div className={`${styles.sidebar} ${open ? styles.show : ""}`}>
       
@@ -26,13 +32,12 @@ function Sidebar({ open, setOpen }) {
       </div>
       <hr />
       {/* HOME */}
-      <div
+  <div
   className={styles.item}
   onClick={() => {
-    // 1. Navigate to dashboard
     navigate("/dashboard");
+    setOpen(false);
 
-    // 2. Scroll to top AFTER navigation
     setTimeout(() => {
       document
         .getElementById("home")
@@ -53,22 +58,22 @@ function Sidebar({ open, setOpen }) {
         </div>
         {active === "customers" && (
           <div className={styles.sub}>
-            <p onClick={() => navigate("/booking-form")}>Booking</p>
-            <p onClick={() => navigate("/delivery-form")}>Delivery</p>
-            <p onClick={() => navigate("/receipt-form")}>Receipt</p>
-            <p onClick={() => navigate("/shalwaar-kameez-form")}>Shalwaar Qameez</p>
-            <p onClick={() => navigate("/delivery-report")}>Delivery Report</p>
-            <p>Customer Ledger</p>
-            <p>Customer Balances</p>
-            <p>Home Delivery List</p>
-            <p>Unpaid Deliveries</p>
-            <p>Find Bookings</p>
-            <p>Issue Report</p>
-            <p>Delivery Check</p>
-            <p>Trial Date Check</p>
-            <p>Not Sent to Karigar</p>
-            <p>Karigar Work Summary</p>
-            <p>Add/Edit Customers</p>
+            <p onClick={() => handleNavigate("/booking-form")}>Booking</p>
+            <p onClick={() => handleNavigate("/delivery-form")}>Delivery</p>
+            <p onClick={() => handleNavigate("/receipt-form")}>Receipt</p>
+            <p onClick={() => handleNavigate("/shalwaar-kameez-form")}>Shalwaar Qameez</p>
+            <p onClick={() => handleNavigate("/delivery-report")}>Delivery Report</p>
+            <p onClick={() => handleNavigate("/customer-ledger-form")}>Customer Ledger</p>
+            <p onClick={() => handleNavigate("/customer-balances-form")}>Customer Balances</p>
+            <p onClick={() => handleNavigate("/home-delivery-list")}>Home Delivery List</p>
+            <p onClick={() => handleNavigate("/unpaid-deliveries")}>Unpaid Deliveries</p>
+            <p onClick={() => handleNavigate("/find-bookings-form")}>Find Bookings</p>
+            <p onClick={() => handleNavigate("/report-form")}>Report</p>
+            <p onClick={() => handleNavigate("/delivery-check")}>Delivery Check</p>
+            <p onClick={() => handleNavigate("/trial-date-check")}>Trial Date Check</p>
+            <p onClick={() => handleNavigate("/not-sent-to-karigar")}>Not Sent to Karigar</p>
+            <p onClick={() => handleNavigate("/karigar-work-summary")}>Karigar Work Summary</p>
+            <p onClick={() => handleNavigate("/add-edit-customers-form")}>Add/Edit Customers</p>
           </div>
         )}
       </div>
@@ -81,10 +86,10 @@ function Sidebar({ open, setOpen }) {
         </div>
         {active === "production" && (
           <div className={styles.sub}>
-            <p>Karigar</p>
-            <p>Cutting</p>
-            <p>Karigar Receiving</p>
-            <p>Cutting Receiving</p>
+            <p onClick={() => handleNavigate("/karigar-form")}>Karigar</p>
+            <p onClick={() => handleNavigate("/cutting-form")}>Cutting</p>
+            <p onClick={() => handleNavigate("/karigar-receiving-form")}>Karigar Receiving</p>
+            <p onClick={() => handleNavigate("/cutting-receiving-form")}>Cutting Receiving</p>
             
           </div>
         )}
@@ -98,9 +103,9 @@ function Sidebar({ open, setOpen }) {
         </div>
         {active === "invoice" && (
           <div className={styles.sub}>
-            <p>Purchase</p>
-            <p>Purchase Return</p>
-            <p>Stock Adjustment</p>
+            <p onClick={() => handleNavigate("/purchase-form")}>Purchase</p>
+            <p onClick={() => handleNavigate("/purchase-return-form")}>Purchase Return</p>
+            <p onClick={() => handleNavigate("/stock-adjustment-form")}>Stock Adjustment</p>
           </div>
         )}
       </div>
@@ -113,9 +118,9 @@ function Sidebar({ open, setOpen }) {
         </div>
         {active === "vouchers" && (
           <div className={styles.sub}>
-            <p>Petty Cash</p>
-            <p>Bank Payment</p>
-            <p>Bank Receipt</p>
+            <p onClick={() => handleNavigate("/petty-cash-form")}>Petty Cash</p>
+            <p onClick={() => handleNavigate("/bank-payment-form")}>Bank Payment</p>
+            <p onClick={() => handleNavigate("/bank-receipt-form")}>Bank Receipt</p>
           </div>
         )}
       </div>
@@ -128,24 +133,24 @@ function Sidebar({ open, setOpen }) {
         </div>
         {active === "report" && (
           <div className={styles.sub}>
-            <p>Ledger</p>
-            <p>Cash Activity</p>
-            <p>Cash Book</p>
-            <p>Bank Book</p>
-            <p>Expenses Summary</p>
-            <p>Karigar Work Detail</p>
-            <p>Sales</p>
-            <p>Profit on Sale</p>
-            <p>Tax Report</p>
-            <p>Purchases</p>
-            <p>Products List</p>
-            <p>Chart of Accounts</p>
-            <p>Stock Report</p>
-            <p>Item Ledger</p>
-            <p>Stock Adjustments</p>
-            <p>Trial Balance</p>
-            <p>Profit & Loss</p>
-            <p>Balance Sheet</p>
+            <p onClick={() => handleNavigate("/ledger")}>Ledger</p>
+            <p onClick={() => handleNavigate("/cash-activity")}>Cash Activity</p>
+            <p onClick={() => handleNavigate("/cash-book")}>Cash Book</p>
+            <p onClick={() => handleNavigate("/bank-book")}>Bank Book</p>
+            <p onClick={() => handleNavigate("/expenses-summary")}>Expenses Summary</p>
+            <p onClick={() => handleNavigate("/karigar-work-detail")}>Karigar Work Detail</p>
+            <p onClick={() => handleNavigate("/sales")}>Sales</p>
+            <p onClick={() => handleNavigate("/profit-on-sale")}>Profit on Sale</p>
+            <p onClick={() => handleNavigate("/tax-report")}>Tax Report</p>
+            <p onClick={() => handleNavigate("/purchases")}>Purchases</p>
+            <p onClick={() => handleNavigate("/products-list")}>Products List</p>
+            <p onClick={() => handleNavigate("/chart-of-accounts")}>Chart of Accounts</p>
+            <p onClick={() => handleNavigate("/stock-report")}>Stock Report</p>
+            <p onClick={() => handleNavigate("/item-ledger")}>Item Ledger</p>
+            <p onClick={() => handleNavigate("/stock-adjustments")}>Stock Adjustments</p>
+            <p onClick={() => handleNavigate("/trial-balance")}>Trial Balance</p>
+            <p onClick={() => handleNavigate("/profit-loss")}>Profit & Loss</p>
+            <p onClick={() => handleNavigate("/balance-sheet")}>Balance Sheet</p>
             
           </div>
         )}
@@ -159,16 +164,16 @@ function Sidebar({ open, setOpen }) {
         </div>
         {active === "management" && (
           <div className={styles.sub}>
-            <p>Chart of Accounts</p>
-            <p>Add/Edit Items</p>
-            <p>Branch Management</p>
-            <p>Karigar Rates</p>
-            <p>Designs</p>
-            <p>Extras</p>
-            <p>Change Password</p>
-            <p>User Management</p>
-            <p>User Authorization</p>
-            <p>Settings</p>
+            <p onClick={() => handleNavigate("/chart-of-accounts")}>Chart of Accounts</p>
+            <p onClick={() => handleNavigate("/add-edit-items")}>Add/Edit Items</p>
+            <p onClick={() => handleNavigate("/branch-management")}>Branch Management</p>
+            <p onClick={() => handleNavigate("/karigar-rates")}>Karigar Rates</p>
+            <p onClick={() => handleNavigate("/designs")}>Designs</p>
+            <p onClick={() => handleNavigate("/extras")}>Extras</p>
+            <p onClick={() => handleNavigate("/change-password")}>Change Password</p>
+            <p onClick={() => handleNavigate("/user-management")}>User Management</p>
+            <p onClick={() => handleNavigate("/user-authorization")}>User Authorization</p>
+            <p onClick={() => handleNavigate("/settings")}>Settings</p>
           </div>
         )}
       </div>

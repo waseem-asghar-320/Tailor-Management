@@ -46,7 +46,7 @@ function Customers() {
     else if (title === "Home Delivery List") navigate("/home-delivery-list-form");
     else if (title === "Unpaid Deliveries") navigate("/unpaid-deliveries-form");
     else if (title === "Find Bookings") navigate("/find-bookings-form");
-    else if (title === "Issue Report") navigate("/issue-report-form");
+    else if (title === "Issue Report") navigate("/report-form");
     else if (title === "Delivery Check") navigate("/delivery-check-form");
     else if (title === "Trial Date Check") navigate("/trial-date-check-form");
     else if (title === "Not Sent to Karigar") navigate("/not-sent-to-karigar-form");
@@ -62,17 +62,17 @@ function Customers() {
         <div className={styles.grid}>
           {data.map((item, index) => (
             <div key={index} className={styles.card} onClick={() => handleClick(item.title)}
-              style={{ cursor: "pointer"}} >
+              style={{ cursor: "pointer",backgroundColor: item.bg}} >
            
              
 
-              <div className={styles.icon} style={{ color: item.color,}}>
+              <div className={styles.icon} style={{ color: item.color,backgroundColor: item.bg,}}>
 
               {item.icon}
 
               </div>
 
-              <p>
+              <p style={{ color: item.color }}>
               {item.title}
               </p>
             </div>

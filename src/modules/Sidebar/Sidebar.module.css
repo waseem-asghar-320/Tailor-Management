@@ -1,6 +1,6 @@
 .sidebar {
   position: fixed;
-  left: -250px;
+  left: -600px;
   top: 0;
   width: 225px;
   height: 100vh;
@@ -15,6 +15,13 @@
 
   /* Hide scrollbar (IE & Edge) */
   -ms-overflow-style: none;
+}
+@media (max-width: 576px) {
+  .sidebar {
+    width: 100%;
+    z-index: 1001; /* Ensure it appears above the header */
+  }
+ 
 }
 /* Hide scrollbar (Chrome, Safari) */
 .sidebar::-webkit-scrollbar {

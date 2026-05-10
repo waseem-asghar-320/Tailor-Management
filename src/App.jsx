@@ -11,12 +11,26 @@ import Layout from "./modules/Home/Dashboard/Layout/Layout.jsx";
 import DeliveryReport from "./modules/Home/Dashboard/Customers/Components/DeliveryReport/DeliveryReport.jsx";
 import CustomerLedger from "./modules/Home/Dashboard/Customers/Components/CustomerLedger/CustomerLedger.jsx";
 import AddCustomer from "./modules/Home/Dashboard/Customers/Components/AddEditCustomers/AddCustomer.jsx";
-
+import Report from "./modules/Home/Dashboard/Customers/Components/Report/Report.jsx";
+import CustomerBalance from "./modules/Home/Dashboard/Customers/Components/CustomerBalance/CustomerBalance.jsx";
 // invoice section
+import AddInvoice from "./modules/Home/Dashboard/Invoices/Components/AddInvoice/AddInvoice.jsx";
 import Purchase from "./modules/Home/Dashboard/Invoices/Components/Purchase/Purchase.jsx";
+import PurchaseReturn from "./modules/Home/Dashboard/Invoices/Components/PurchaseReturn/PurchaseReturn.jsx";
+import StockAdjustment from "./modules/Home/Dashboard/Invoices/Components/StockAdjustment/StockAdjustment.jsx";
 
 // Production Section
 import Cutting from "./modules/Home/Dashboard/Production/Components/Cutting/Cutting.jsx";
+import Karigar from "./modules/Home/Dashboard/Production/Components/Karigar/Karigar.jsx";
+import KarigarReceiving from "./modules/Home/Dashboard/Production/Components/KarigarReceiving/KarigarReceiving.jsx";
+import CuttingReceiving from "./modules/Home/Dashboard/Production/Components/CuttingReceiving/CuttingReceiving.jsx";
+
+//Voucher Section
+import VoucherForm from "./modules/Home/Dashboard/Vouchers/Components/VoucherForm/VoucherForm.jsx";
+import PettyCash from "./modules/Home/Dashboard/Vouchers/Components/PettyCash/PettyCash.jsx";
+import BankPayment from "./modules/Home/Dashboard/Vouchers/Components/BankPayment/BankPayment.jsx";
+import BankReceipt from "./modules/Home/Dashboard/Vouchers/Components/BankReceipt/BankReceipt.jsx";
+
 // const Navigate = useNavigate();
 
 function App() {
@@ -103,7 +117,31 @@ function App() {
         </Layout>
       )   
     },
-    // purchase section path
+    {
+      path: "/report-form",
+      element: (
+        <Layout>
+          <Report />
+        </Layout>
+      )
+    },
+    {
+      path: "/customer-balances-form",
+      element: (
+        <Layout>
+          <CustomerBalance />
+        </Layout>
+      )
+    },
+    // invoice section path
+    {
+      path: "/add-invoice-form",
+      element: (
+        <Layout>
+          <AddInvoice />
+        </Layout>
+      )   
+    },
     {
       path: "/purchase-form",
       element: (
@@ -116,16 +154,81 @@ function App() {
       path: "/purchase-return-form",
       element: (
         <Layout>
-          <Purchase />
+          <PurchaseReturn />
         </Layout>
       )   
     },
+    {
+      path: "/stock-adjustment-form",
+      element: (
+        <Layout>
+          <StockAdjustment />
+        </Layout>
+      )
+    },  
     //Production section
     {
       path: "/cutting-form",
       element: (
         <Layout>
           <Cutting />
+        </Layout>
+      )   
+    },
+    {
+      path: "/karigar-form",
+      element: (
+        <Layout>
+          <Karigar />
+        </Layout>
+      )   
+    },
+    {
+      path: "/karigar-receiving-form",
+      element: (
+        <Layout>
+          <KarigarReceiving />
+        </Layout>
+      )
+    },
+    {
+      path: "/cutting-receiving-form",
+      element: (
+        <Layout>
+          <CuttingReceiving />
+        </Layout>
+      )
+    },
+    //Voucher section 
+    {
+      path: "/voucher-form",
+      element: (
+        <Layout>
+          <VoucherForm />
+        </Layout>
+      ) 
+    },
+    {
+      path: "/petty-cash-form",
+      element: (
+        <Layout>        
+          <PettyCash />
+        </Layout>
+      )
+    },
+    {
+      path: "/bank-payment-form",
+      element: (
+        <Layout>
+          <BankPayment />
+        </Layout>
+      ) 
+    },
+    {
+      path: "/bank-receipt-form",
+      element: (
+        <Layout>
+          <BankReceipt />
         </Layout>
       )   
     },
