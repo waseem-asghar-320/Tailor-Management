@@ -30,7 +30,7 @@ const data = [
   { title:"Expenses Summary", icon:<FaFileInvoiceDollar/>, color:"#ef4444", bg:"#fecaca" },
   { title:"Karigar Work Detail", icon:<FaUserCog/>, color:"#8b5cf6", bg:"#ddd6fe" },
   { title:"Sales", icon:<FaShoppingCart/>, color:"#14b8a6", bg:"#99f6e4" },
-  { title:"Profit on Sale", icon:<FaChartLine/>, color:"#22c55e", bg:"#bbf7d0" },
+  { title:"Profit On Sale", icon:<FaChartLine/>, color:"#22c55e", bg:"#bbf7d0" },
   { title:"Tax Report", icon:<FaReceipt/>, color:"#f97316", bg:"#fed7aa" },
   { title:"Purchases", icon:<FaShoppingCart/>, color:"#0ea5e9", bg:"#bae6fd" },
   { title:"Products List", icon:<FaBoxOpen/>, color:"#a855f7", bg:"#e9d5ff" },
@@ -47,12 +47,13 @@ function Report() {
 
   const handleClick = (title) => {
     if (title === "Ledger") navigate("/ledger-form");
-    else if (title === "Cash-Back") navigate("/cash-back-form");
+    else if (title === "Cash Activity") navigate("/cash-activity-form");
+    else if (title === "Cash Book") navigate("/cash-book-form");
     else if (title === "Bank Book") navigate("/bank-book-form");
     else if (title === "Expenses Summary") navigate("/expenses-summary-form");
     else if (title === "Karigar Work Detail") navigate("/karigar-work-detail-form");
     else if (title === "Sales") navigate("/sales");
-    else if (title === "Profit & Loss") navigate("/profit-loss-form");
+    else if (title === "Profit On Sale") navigate("/profit-on-sale-form");
     else if (title === "Tax Report") navigate("/tax-report-form");
     else if (title === "Purchases") navigate("/purchases-form");
     else if (title === "Products List") navigate("/products-list-form");

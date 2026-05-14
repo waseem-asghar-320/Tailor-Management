@@ -1,7 +1,7 @@
 import { useState } from "react";
-import styles from "./AddVoucherButtonForm.module.css";
+import styles from "./AddVoucher.module.css";
 
-function AddVoucherButtonForm() {
+function AddVoucher() {
 
   const [voucher, setVoucher] = useState({
     ref_no: "V-001",
@@ -152,4 +152,4 @@ function AddVoucherButtonForm() {
   );
 }
 
-export default AddVoucherButtonForm;
+export default AddVoucher;
