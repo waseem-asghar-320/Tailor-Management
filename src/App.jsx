@@ -52,7 +52,7 @@ import ProfitAndLoss from "./modules/Home/Dashboard/Reports/Components/ProfitAnd
 
 //Managment Section
 import ChartOfAccount from "./modules/Home/Dashboard/Management/Components/ChartOfAccount/ChartOfAccount.jsx";
-
+import AddEditItem from "./modules/Home/Dashboard/Management/Components/AddEditItems/AddEditItem.jsx";
 // const Navigate = useNavigate();
 
 function App() {
@@ -407,6 +407,14 @@ function App() {
         </Layout>
       )
     },  
+    {
+      path: "/add-edit-items",
+      element: (
+        <Layout>
+          <AddEditItem />
+        </Layout>
+      )
+    },
 
     {
       path: "*",

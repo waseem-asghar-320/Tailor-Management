@@ -1,0 +1,278 @@
+.container {
+  min-height: 100vh;
+  padding: 30px;
+  background: #f3f4f6;
+  font-family: sans-serif;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header h1 {
+  font-size: 34px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.header p {
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+/* BUTTON */
+.addBtn {
+  background: #111827;
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.addBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* TOPBAR */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* SEARCH */
+.searchBox {
+  width: 360px;
+  background: white;
+  padding: 14px 18px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.searchBox input {
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #111827;
+  background: transparent;
+}
+
+/* ENTRIES */
+.showEntries {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.showEntries select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+}
+
+/* TABLE */
+.tableWrapper {
+  background: white;
+  border-radius: 22px;
+  overflow-x: auto;
+  border: 1px solid #ececec;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #111827;
+}
+
+thead th {
+  color: white;
+  padding: 18px;
+  text-align: left;
+}
+
+tbody td {
+  padding: 18px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+.itemName {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #111827;
+  font-weight: 600;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.editBtn,
+.deleteBtn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.editBtn {
+  background: #111827;
+}
+
+.deleteBtn {
+  background: #dc2626;
+}
+
+/* PAGINATION */
+.pagination {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+}
+
+.activePage {
+  background: #111827 !important;
+  color: white;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border-radius: 24px;
+  padding: 30px;
+}
+
+/* MODAL HEADER */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.modalHeader h2 {
+  color: #111827;
+}
+
+.modalHeader button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #f3f4f6;
+}
+
+/* FORM */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 16px;
+}
+
+.grid input,
+.grid select {
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  background: #f9fafb;
+}
+
+.grid input:focus,
+.grid select:focus {
+  border-color: #111827;
+}
+
+/* SAVE */
+.saveBtn {
+  width: 100%;
+  margin-top: 22px;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  background: #111827;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .container {
+    padding: 18px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .searchBox {
+    width: 100%;
+  }
+
+  .topBar {
+    flex-direction: column;
+  }
+
+  .modalContent {
+    padding: 20px;
+  }
+
+}
