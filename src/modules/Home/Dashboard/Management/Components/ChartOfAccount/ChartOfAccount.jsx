@@ -172,25 +172,15 @@ function ChartOfAccount() {
 
         <div>
           <h1>Chart of Account</h1>
-          <p>
+          {/* <p>
             Manage all customer accounts
-          </p>
+          </p> */}
         </div>
 
-        <button
-          className={styles.addBtn}
-          onClick={() => setShowForm(true)}
-        >
-          <FaPlus />
-          Add Account
-        </button>
+      
+      
 
-      </div>
-
-      {/* TOP BAR */}
-      <div className={styles.topBar}>
-
-        {/* Search */}
+          {/* Search */}
         <div className={styles.searchBox}>
 
           <FaSearch />
@@ -203,6 +193,14 @@ function ChartOfAccount() {
               setSearch(e.target.value)
             }
           />
+        
+
+      </div>
+
+      {/* TOP BAR */}
+      <div className={styles.topBar}>
+
+      
 
         </div>
 
@@ -229,6 +227,14 @@ function ChartOfAccount() {
         </div>
 
       </div>
+
+        <button
+          className={styles.addBtn}
+          onClick={() => setShowForm(true)}
+        >
+          <FaPlus />
+          Add Account
+        </button>
 
       {/* TABLE */}
       <div className={styles.tableWrapper}>

@@ -38,6 +38,7 @@
 
 .field input,
 .fullWidth textarea {
+    width: 95%;
   padding: 11px;
   border: 1px solid #dcdcdc;
   border-radius: 8px;

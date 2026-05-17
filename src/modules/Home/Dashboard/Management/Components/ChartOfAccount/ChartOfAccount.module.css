@@ -11,8 +11,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  flex-wrap: wrap;
-  gap: 20px;
+  /* flex-wrap: wrap;
+  gap: 20px; */
 }
 
 .header h1 {
@@ -30,19 +30,21 @@
 /* ADD BUTTON */
 .addBtn {
   
+  width: 20%;
   background: #111827;
   color: white;
   border: none;
   padding: 14px 22px;
   border-radius: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  /* display: flex; */
+  /* align-items: center; */
+  /* gap: 10px; */
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
   box-shadow: 0 10px 25px rgba(17, 24, 39, 0.15);
+  margin-bottom: 20px;
 }
 
 .addBtn:hover {
@@ -65,7 +67,7 @@
   width: 370px;
   background: white;
   border-radius: 16px;
-  padding: 14px 18px;
+  padding: 5px;
   display: flex;
   align-items: center;
   gap: 12px;

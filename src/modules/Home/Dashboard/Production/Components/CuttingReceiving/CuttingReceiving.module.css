@@ -36,6 +36,7 @@
 .field input,
 .field select,
 .fullWidth textarea {
+    width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;

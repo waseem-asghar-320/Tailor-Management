@@ -1,25 +1,31 @@
 .container {
-  padding: 20px;
+  padding: 40px 20px;
   background: #f4f6f9;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 .card {
   background: white;
-  padding: 25px;
+  width: 100%;
+  max-width: 1100px;
+  padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-.card h2 {
-  margin-bottom: 20px;
-  color: #2c3e50;
+.title {
+  text-align: center;
+  color: #111827;
+  margin-bottom: 40px;
+  font-size: 2rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 .field {
@@ -27,34 +33,54 @@
   flex-direction: column;
 }
 
-.field label,
-.fullWidth label {
-  margin-bottom: 5px;
-  font-weight: 600;
+.field label, .groupLabel, .fullWidth label {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
 }
 
-.field input,
-.field select,
-.fullWidth textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
+.field input, .field select, .fullWidth textarea {
+  /* padding: 12px; */
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   outline: none;
+  transition: border-color 0.2s;
 }
 
-.field input:focus,
-.field select:focus,
-.fullWidth textarea:focus {
-  border-color: #3498db;
+.field input:focus, .field select:focus {
+  border-color: #111827;
 }
-input, textarea, select{
-  width: 90%;
+
+/* Design Button Section inside Form */
+.designButtonGroup {
+  grid-column: 1 / -1;
+  margin: 10px 0;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.designBtn {
+  background: #111827;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.designBtn:hover {
+  background: #374151; /* Related hover color */
 }
 
 .fullWidth {
   grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
 }
 
 .fullWidth textarea {
@@ -62,17 +88,193 @@ input, textarea, select{
   resize: vertical;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  border: none;
-  background: #2c3e50;
+.saveBtn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 15px;
+  background: #111827;
   color: white;
+  border: none;
   border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-button:hover {
-  background: #1f2d3a;
+.saveBtn:hover {
+  background: #1f2937;
+}
+
+/* Modal Styling */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  width: 90%;
+  max-width: 750px;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.modalTitleIndicator {
+  border: 1px solid #d1d5db;
+  padding: 6px 30px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.closeIcon {
+  position: absolute;
+  width: 20px;
+  right: 30px;
+  top: 1px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #9ca3af;
+  cursor: pointer;
+}
+.closeIcon:hover{
+  background-color: #fff;
+}
+
+.modalBody {
+  padding: 25px;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.imagePlaceholder {
+  height: 120px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.imagePlaceholder:hover {
+  border-color: #111827;
+}
+
+.modalFooter {
+  padding: 15px 25px;
+  background: #f9fafb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.primaryBtn {
+  background: #111827;
+  color: white;
+  padding: 8px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.secondaryBtn {
+  background: #6b7280;
+  color: white;
+  padding: 8px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Existing styles... (keep previous CSS) */
+
+/* Visual feedback for selected image in modal */
+.activeImage {
+  border: 3px solid #111827 !important;
+  background: #e5e7eb !important;
+  transform: scale(1.05);
+}
+
+/* Visual feedback for button on main form if an image was chosen */
+.btnSelected {
+  background: #059669 !important; /* Green to show completion */
+}
+
+.imagePlaceholder {
+  height: 120px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.imagePlaceholder:hover {
+  border-color: #111827;
+  background: #f3f4f6;
+}
+
+/* Done Button Style */
+.primaryBtn {
+  background: #111827;
+  color: white;
+  padding: 8px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primaryBtn:hover {
+  background: #374151;
+}
+
+.modalImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures the design drawing isn't cropped */
+  display: block;
+}
+
+.imagePlaceholder {
+  height: 150px; /* Adjusted height for better visibility */
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
