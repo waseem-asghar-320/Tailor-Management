@@ -1,7 +1,7 @@
 import styles from './Management.module.css';
 import { useNavigate } from "react-router-dom";
-// 👇 import icons
 
+// 👇 import icons
 import {
   FaSitemap,
   FaPlusSquare,
@@ -15,72 +15,95 @@ import {
   FaCog
 } from "react-icons/fa";
 
-
-
 const data = [
-  { title:"Chart of Accounts", icon:<FaSitemap/>, color:"#6366f1", bg:"#c7d2fe" },
-  { title:"Add/Edit Items", icon:<FaPlusSquare/>, color:"#22c55e", bg:"#bbf7d0" },
-  { title:"Branch Management", icon:<FaCodeBranch/>, color:"#0ea5e9", bg:"#bae6fd" },
-  { title:"Karigar Rates", icon:<FaTools/>, color:"#f97316", bg:"#fed7aa" },
-  { title:"Designs", icon:<FaPalette/>, color:"#a855f7", bg:"#e9d5ff" },
-  { title:"Extras", icon:<FaPuzzlePiece/>, color:"#14b8a6", bg:"#99f6e4" },
-  { title:"Change Password", icon:<FaKey/>, color:"#ef4444", bg:"#fecaca" },
-  { title:"User Management", icon:<FaUsers/>, color:"#3b82f6", bg:"#bfdbfe" },
-  { title:"User Authorization", icon:<FaUserShield/>, color:"#8b5cf6", bg:"#ddd6fe" },
-  { title:"Settings", icon:<FaCog/>, color:"#64748b", bg:"#e2e8f0" },
+  { title: "Chart of Accounts", icon: <FaSitemap />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Manage account structure" },
+  { title: "Add/Edit Items", icon: <FaPlusSquare />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Manage inventory items" },
+  { title: "Branch Management", icon: <FaCodeBranch />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Multi-branch settings" },
+  { title: "Karigar Rates", icon: <FaTools />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Worker rate management" },
+  { title: "Designs", icon: <FaPalette />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Design catalog" },
+  { title: "Extras", icon: <FaPuzzlePiece />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Additional items" },
+  { title: "Change Password", icon: <FaKey />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Update your password" },
+  { title: "User Management", icon: <FaUsers />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Manage system users" },
+  { title: "User Authorization", icon: <FaUserShield />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Role permissions" },
+  { title: "Settings", icon: <FaCog />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "System configuration" },
 ];
 
 function Management() {
   const navigate = useNavigate();
 
   const handleClick = (title) => {
-    if (title === "Chart of Accounts") navigate("/chart-of-accounts");
-    else if (title === "Add/Edit Items") navigate("/add-edit-items");
-    else if (title === "Branch Management") navigate("/branch-management");
-    else if (title === "Karigar Rates") navigate("/karigar-rates");
-    else if (title === "Designs") navigate("/designs");
-    else if (title === "Extras") navigate("/extras");
-    else if (title === "Change Password") navigate("/change-password");
-    else if (title === "User Management") navigate("/user-management");
-    else if (title === "User Authorization") navigate("/user-authorization");
-    else if (title === "Settings") navigate("/settings");
+    const routes = {
+      "Chart of Accounts": "/chart-of-accounts",
+      "Add/Edit Items": "/add-edit-items",
+      "Branch Management": "/branch-management",
+      "Karigar Rates": "/karigar-rates",
+      "Designs": "/designs",
+      "Extras": "/extras",
+      "Change Password": "/change-password",
+      "User Management": "/user-management",
+      "User Authorization": "/user-authorization",
+      "Settings": "/settings"
+    };
+    navigate(routes[title]);
   };
 
   return (
-    <>
-      <h2 className={styles.heading}>Management</h2>
-
+    <div className={styles.wrapper}>
+      <div className={styles.bgDecoration}>
+        <div className={styles.bgCircle1}></div>
+        <div className={styles.bgCircle2}></div>
+        <div className={styles.bgCircle3}></div>
+      </div>
+      
       <div className={styles.container}>
-        
+        <div className={styles.header}>
+          <div className={styles.headerContent}>
+            <div className={styles.headerIcon}>⚙️</div>
+            <div>
+              <h1 className={styles.mainTitle}>Management</h1>
+              <p className={styles.subtitle}>System administration and configuration</p>
+            </div>
+          </div>
+          <div className={styles.headerStats}>
+            <div className={styles.stat}>
+              <span className={styles.statValue}>{data.length}</span>
+              <span className={styles.statLabel}>Modules</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.stat}>
+              <span className={styles.statValue}>Admin</span>
+              <span className={styles.statLabel}>Access</span>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.grid}>
           {data.map((item, index) => (
-            <div
-              key={index}
-              className={styles.card}
+            <div 
+              key={index} 
+              className={styles.card} 
               onClick={() => handleClick(item.title)}
-              style={{ cursor: "pointer",backgroundColor: item.bg}}
+              style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
             >
-              {/* 👇 ICON instead of IMG */}
-              {/* <div className={styles.icon}>{item.icon}</div> */}
-
-              <div
-              className={styles.icon}
-              style={{
-                color: item.color,
-                backgroundColor: item.bg,
-              }}
-            >
-              {item.icon}
-            </div>
-
-              <p style={{ color: item.color }}>
-              {item.title}
-              </p>
+              <div className={styles.cardGlow}></div>
+              <div className={styles.cardInner}>
+                <div className={styles.iconWrapper} style={{ background: item.bg }}>
+                  <div className={styles.icon} style={{ color: item.color }}>
+                    {item.icon}
+                  </div>
+                </div>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.title}>{item.title}</h3>
+                  <p className={styles.description}>{item.description}</p>
+                </div>
+                <div className={styles.cardArrow}>→</div>
+              </div>
+              <div className={styles.cardBorder}></div>
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

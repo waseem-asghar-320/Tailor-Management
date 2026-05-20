@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
-
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -16,11 +14,9 @@ export default function Auth() {
     confirmPassword: "",
   });
 
-
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    // here you can add validation or API call later
     navigate("/dashboard");
   };
 
@@ -43,83 +39,119 @@ export default function Auth() {
     }
 
     console.log("Form Data:", formData);
-    // alert(isLogin ? "Login Successful" : "Signup Successful");
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h2>{isLogin ? "Login" : "Signup"}</h2>
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <div className="auth-logo">
+            <span className="logo-icon">✨</span>
+            <h2>{isLogin ? "Welcome Back" : "Create Account"}</h2>
+          </div>
+          <p className="auth-subtitle">
+            {isLogin ? "Please login to your account" : "Sign up to get started"}
+          </p>
+        </div>
 
         <form onSubmit={handleSubmit}>
           {!isLogin && (
             <>
-              <input
-                type="text"
-                name="fullName"
-                placeholder="Full Name"
-                required
-                onChange={handleChange}
-              />
+              <div className="input-group">
+                <label>Full Name</label>
+                <input
+                  type="text"
+                  name="fullName"
+                  placeholder="Enter your full name"
+                  required
+                  onChange={handleChange}
+                />
+              </div>
 
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone Number"
-                required
-                onChange={handleChange}
-              />
+              <div className="input-group">
+                <label>Phone Number</label>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Enter your phone number"
+                  required
+                  onChange={handleChange}
+                />
+              </div>
 
-              <textarea
-                name="address"
-                placeholder="Address (Optional)"
-                onChange={handleChange}
-              />
+              <div className="input-group">
+                <label>Address (Optional)</label>
+                <textarea
+                  name="address"
+                  placeholder="Enter your address"
+                  onChange={handleChange}
+                />
+              </div>
 
-              <select name="role" onChange={handleChange} required>
-                <option value="Admin">Admin</option>
-                <option value="Staff">Staff</option>
-              </select>
+              <div className="input-group">
+                <label>Role</label>
+                <select name="role" onChange={handleChange} required>
+                  <option value="Admin">Admin</option>
+                  <option value="Staff">Staff</option>
+                </select>
+              </div>
             </>
           )}
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-            onChange={handleChange}
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-            onChange={handleChange}
-          />
-
-          {!isLogin && (
+          <div className="input-group">
+            <label>Email Address</label>
             <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
               required
               onChange={handleChange}
             />
+          </div>
+
+          <div className="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              onChange={handleChange}
+            />
+          </div>
+
+          {!isLogin && (
+            <div className="input-group">
+              <label>Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                required
+                onChange={handleChange}
+              />
+            </div>
           )}
 
-          <button type="submit" onClick={handleLogin}>
-            {isLogin ? "Login" : "Create Account"}
+          {isLogin && (
+            <div className="forgot-password">
+              <a href="#">Forgot password?</a>
+            </div>
+          )}
 
+          <button type="submit" className="auth-button" onClick={handleLogin}>
+            {isLogin ? "Login" : "Create Account"}
           </button>
         </form>
 
-        <p onClick={() => setIsLogin(!isLogin)} className="toggle">
-          {isLogin
-            ? "Don't have an account? Signup"
-            : "Already have an account? Login"}
-        </p>
+        <div className="auth-footer">
+          <p>
+            {isLogin ? "Don't have an account? " : "Already have an account? "}
+            <span onClick={() => setIsLogin(!isLogin)} className="toggle-link">
+              {isLogin ? "Sign up" : "Login"}
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

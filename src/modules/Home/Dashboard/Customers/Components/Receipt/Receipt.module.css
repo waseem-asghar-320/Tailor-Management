@@ -1,25 +1,53 @@
+/* Receipt.module.css - Professional Design with #ffa600 Theme */
+
 .container {
-  padding: 20px;
-  background: #f4f6f9;
+  padding: 30px;
+  background: linear-gradient(135deg, #fef9e7 0%, #fff4e0 100%);
   min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
 .card {
+  max-width: 800px;
+  margin: 0 auto;
   background: white;
-  padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  animation: fadeIn 0.4s ease;
 }
 
-.card h2 {
-  margin-bottom: 20px;
-  color: #2c3e50;
+.header {
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  padding: 25px 30px;
+  text-align: center;
+}
+
+.title {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Form Styling */
+form {
+  padding: 30px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .field {
@@ -29,24 +57,51 @@
 
 .field label,
 .fullWidth label {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffa600;
 }
 
 .field input,
 .field select,
 .fullWidth textarea {
-    width: 95%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
+  padding: 12px 14px;
+  border: 2px solid #ffe0b3;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: white;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .field input:focus,
 .field select:focus,
 .fullWidth textarea:focus {
-  border-color: #3498db;
+  outline: none;
+  border-color: #ffa600;
+  box-shadow: 0 0 0 3px rgba(255, 166, 0, 0.1);
+}
+
+.field input:hover,
+.field select:hover,
+.fullWidth textarea:hover {
+  border-color: #ffa600;
+}
+
+/* Number input specific */
+.field input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.field input[type="number"]::-webkit-inner-spin-button,
+.field input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.5;
 }
 
 .fullWidth {
@@ -56,21 +111,169 @@
 }
 
 .fullWidth textarea {
-  min-height: 100px;
   resize: vertical;
+  min-height: 100px;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  border: none;
-  background: #2c3e50;
+/* Form Actions */
+.formActions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
   color: white;
-  border-radius: 8px;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(255, 166, 0, 0.2);
 }
 
-button:hover {
-  background: #1f2d3a;
+.submitBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e68a00 0%, #cc7700 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 166, 0, 0.3);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.resetBtn {
+  background: white;
+  color: #666;
+  padding: 12px 28px;
+  border: 2px solid #ffe0b3;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.resetBtn:hover {
+  background: #fef9e7;
+  border-color: #ffa600;
+  color: #ffa600;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+  
+  form {
+    padding: 20px;
+  }
+  
+  .header {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .formActions {
+    flex-direction: column;
+  }
+  
+  .submitBtn,
+  .resetBtn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+  
+  form {
+    padding: 15px;
+  }
+  
+  .header {
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 22px;
+  }
+  
+  .subtitle {
+    font-size: 12px;
+  }
+  
+  .field label,
+  .fullWidth label {
+    font-size: 12px;
+  }
+  
+  .field input,
+  .field select,
+  .fullWidth textarea {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .submitBtn,
+  .resetBtn {
+    padding: 10px 20px;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffa600;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e68a00;
 }

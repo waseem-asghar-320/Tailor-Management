@@ -1,120 +1,413 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./VoucherForm.module.css";
-import AddButton from "../AddButton/AddButton";
 
 function VoucherForm() {
+  const navigate = useNavigate();
 
   const [voucher, setVoucher] = useState({
-    ref_no: "JV-001",
+    ref_no: "",
     account: "",
-    debit: 5000,
-    credit: 0,
+    debit: "",
+    credit: "",
     remarks: ""
   });
 
+  const [data, setData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
   const handleChange = (e) => {
-    setVoucher({
-      ...voucher,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    
+    // If updating debit or credit, clear the other field
+    if (name === "debit" && value > 0) {
+      setVoucher({
+        ...voucher,
+        debit: value,
+        credit: ""
+      });
+    } else if (name === "credit" && value > 0) {
+      setVoucher({
+        ...voucher,
+        credit: value,
+        debit: ""
+      });
+    } else {
+      setVoucher({
+        ...voucher,
+        [name]: value
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Validation
+    if (!voucher.ref_no) {
+      alert("Please enter reference number");
+      return;
+    }
+    if (!voucher.account) {
+      alert("Please enter account name");
+      return;
+    }
+    if (!voucher.debit && !voucher.credit) {
+      alert("Please enter either Debit or Credit amount");
+      return;
+    }
+    if (voucher.debit && voucher.credit) {
+      alert("Please enter only Debit OR Credit, not both");
+      return;
+    }
 
-    console.log("Journal Voucher:", voucher);
+    if (editMode) {
+      // Update existing entry
+      const updatedData = data.map(item => 
+        item.id === editId ? { ...voucher, id: editId } : item
+      );
+      setData(updatedData);
+      alert("Journal voucher updated successfully!");
+    } else {
+      // Add new entry
+      const newData = {
+        ...voucher,
+        id: Date.now()
+      };
+      setData([...data, newData]);
+      alert("Journal voucher saved successfully!");
+    }
 
-    // API call here
+    // Reset form
+    setVoucher({
+      ref_no: "",
+      account: "",
+      debit: "",
+      credit: "",
+      remarks: ""
+    });
+    setOpen(false);
+    setEditMode(false);
+    setEditId(null);
+  };
+
+  const handleEdit = (item) => {
+    setVoucher({
+      ref_no: item.ref_no,
+      account: item.account,
+      debit: item.debit,
+      credit: item.credit,
+      remarks: item.remarks || ""
+    });
+    setEditMode(true);
+    setEditId(item.id);
+    setOpen(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this voucher?")) {
+      setData(data.filter(item => item.id !== id));
+      alert("Voucher deleted successfully!");
+    }
+  };
+
+  const handlePrint = (item) => {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Journal Voucher</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 40px; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .voucher { border: 1px solid #ddd; padding: 20px; border-radius: 10px; }
+            .row { display: flex; margin-bottom: 10px; }
+            .label { font-weight: bold; width: 120px; }
+            .value { flex: 1; }
+            .amount { font-size: 24px; font-weight: bold; color: #ffa600; margin-top: 20px; }
+            hr { margin: 20px 0; }
+            .debit-text { color: #4caf50; }
+            .credit-text { color: #f44336; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h2>Journal Voucher</h2>
+          </div>
+          <div class="voucher">
+            <div class="row"><div class="label">Reference No:</div><div class="value">${item.ref_no}</div></div>
+            <div class="row"><div class="label">Account:</div><div class="value">${item.account}</div></div>
+            <div class="row"><div class="label">Transaction Type:</div>
+              <div class="value ${item.debit ? 'debit-text' : 'credit-text'}">
+                ${item.debit ? 'DEBIT' : 'CREDIT'}
+              </div>
+            </div>
+            <div class="row"><div class="label">Amount:</div>
+              <div class="value ${item.debit ? 'debit-text' : 'credit-text'}">
+                ₨ ${parseFloat(item.debit || item.credit).toLocaleString()}
+              </div>
+            </div>
+            <div class="row"><div class="label">Remarks:</div><div class="value">${item.remarks || '-'}</div></div>
+            <hr />
+            <div class="amount">${item.debit ? 'Debit' : 'Credit'} Amount: ₨ ${parseFloat(item.debit || item.credit).toLocaleString()}</div>
+          </div>
+          <div style="text-align: center; margin-top: 30px;">
+            <p>Generated by Tailor Soft System</p>
+          </div>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  };
+
+  // Search filter
+  const filteredData = data.filter((item) =>
+    item.ref_no?.toLowerCase().includes(search.toLowerCase()) ||
+    item.account?.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // Pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('en-PK', {
+      style: 'currency',
+      currency: 'PKR',
+      minimumFractionDigits: 0
+    }).format(value || 0);
+  };
+
+  const calculateTotalDebit = () => {
+    const total = data.reduce((sum, item) => sum + (parseFloat(item.debit) || 0), 0);
+    return formatCurrency(total);
+  };
+
+  const calculateTotalCredit = () => {
+    const total = data.reduce((sum, item) => sum + (parseFloat(item.credit) || 0), 0);
+    return formatCurrency(total);
   };
 
   return (
     <div className={styles.container}>
-      <AddButton />
       <div className={styles.card}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>Journal Voucher</h1>
+          <p className={styles.subtitle}>Manage journal voucher entries</p>
+        </div>
 
-        <h2>Journal Voucher</h2>
-
-        <form onSubmit={handleSubmit}>
-
-          <div className={styles.grid}>
-
-            {/* Ref No */}
-            <div className={styles.field}>
-              <label>Reference No</label>
-
-              <input
-                type="text"
-                name="ref_no"
-                value={voucher.ref_no}
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* Account */}
-            <div className={styles.field}>
-              <label>Account</label>
-
-              <input
-                type="text"
-                name="account"
-                value={voucher.account}
-                onChange={handleChange}
-                placeholder="Enter account name"
-              />
-            </div>
-
-            {/* Debit */}
-            <div className={styles.field}>
-              <label>Debit</label>
-
-              <input
-                type="number"
-                name="debit"
-                value={voucher.debit}
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* Credit */}
-            <div className={styles.field}>
-              <label>Credit</label>
-
-              <input
-                type="number"
-                name="credit"
-                value={voucher.credit}
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* Remarks */}
-            <div className={styles.fullWidth}>
-              <label>Remarks</label>
-
-              <textarea
-                name="remarks"
-                value={voucher.remarks}
-                onChange={handleChange}
-                placeholder="Enter remarks..."
-              />
-            </div>
-
+        <div className={styles.topBar}>
+          <div className={styles.searchWrapper}>
+            <input
+              type="text"
+              placeholder="🔍 Search by reference or account..."
+              className={styles.search}
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setCurrentPage(1);
+              }}
+            />
           </div>
-
-          {/* Summary */}
-          <div className={styles.summary}>
-            <h3>Debit: Rs. {voucher.debit || 0}</h3>
-            <h3>Credit: Rs. {voucher.credit || 0}</h3>
-          </div>
-
-          <button type="submit">
-            Save Voucher
+          <button className={styles.addBtn} onClick={() => setOpen(true)}>
+            + New Voucher
           </button>
+        </div>
 
-        </form>
+        {/* Summary Cards */}
+        {data.length > 0 && (
+          <div className={styles.summaryCards}>
+            <div className={styles.summaryCard}>
+              <div className={styles.summaryIcon}>📊</div>
+              <div className={styles.summaryContent}>
+                <span className={styles.summaryLabel}>Total Debit</span>
+                <span className={styles.debitAmount}>{calculateTotalDebit()}</span>
+              </div>
+            </div>
+            <div className={styles.summaryCard}>
+              <div className={styles.summaryIcon}>📊</div>
+              <div className={styles.summaryContent}>
+                <span className={styles.summaryLabel}>Total Credit</span>
+                <span className={styles.creditAmount}>{calculateTotalCredit()}</span>
+              </div>
+            </div>
+            <div className={styles.summaryCard}>
+              <div className={styles.summaryIcon}>📋</div>
+              <div className={styles.summaryContent}>
+                <span className={styles.summaryLabel}>Total Transactions</span>
+                <span className={styles.summaryAmount}>{data.length}</span>
+              </div>
+            </div>
+          </div>
+        )}
 
+        <div className={styles.tableWrapper}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Ref No</th>
+                <th>Account</th>
+                <th>Debit (₨)</th>
+                <th>Credit (₨)</th>
+                <th>Remarks</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentItems.length === 0 ? (
+                <tr>
+                  <td colSpan="6" className={styles.emptyCell}>
+                    <div className={styles.emptyState}>
+                      <span>📋</span>
+                      <p>No journal vouchers found</p>
+                      <small>Click "New Voucher" to add one</small>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                currentItems.map((item) => (
+                  <tr key={item.id}>
+                    <td><strong>{item.ref_no}</strong></td>
+                    <td>{item.account}</td>
+                    <td className={item.debit ? styles.debitCell : ""}>
+                      {item.debit ? formatCurrency(item.debit) : "-"}
+                    </td>
+                    <td className={item.credit ? styles.creditCell : ""}>
+                      {item.credit ? formatCurrency(item.credit) : "-"}
+                    </td>
+                    <td>{item.remarks || "-"}</td>
+                    <td className={styles.actions}>
+                      <button className={styles.editBtn} onClick={() => handleEdit(item)} title="Edit">
+                        ✏️
+                      </button>
+                      <button className={styles.deleteBtn} onClick={() => handleDelete(item.id)} title="Delete">
+                        🗑️
+                      </button>
+                      <button className={styles.printBtn} onClick={() => handlePrint(item)} title="Print">
+                        🖨️
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {totalPages > 1 && (
+          <div className={styles.pagination}>
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className={styles.pageBtn}
+            >
+              ← Previous
+            </button>
+            <div className={styles.pageNumbers}>
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentPage(index + 1)}
+                  className={currentPage === index + 1 ? styles.activePage : ""}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className={styles.pageBtn}
+            >
+              Next →
+            </button>
+          </div>
+        )}
       </div>
 
+      {/* MODAL */}
+      {open && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <div className={styles.modalHeader}>
+              <h3>{editMode ? "Edit Journal Voucher" : "New Journal Voucher"}</h3>
+              <button className={styles.closeBtn} onClick={() => {
+                setOpen(false);
+                setEditMode(false);
+                setVoucher({
+                  ref_no: "",
+                  account: "",
+                  debit: "",
+                  credit: "",
+                  remarks: ""
+                });
+              }}>✕</button>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+              <div className={styles.grid}>
+                <div className={styles.field}>
+                  <label>Reference No *</label>
+                  <input type="text" name="ref_no" value={voucher.ref_no} onChange={handleChange} placeholder="JV-001" required />
+                </div>
+
+                <div className={styles.field}>
+                  <label>Account *</label>
+                  <input type="text" name="account" value={voucher.account} onChange={handleChange} placeholder="Enter account name" required />
+                </div>
+
+                <div className={styles.field}>
+                  <label>Debit Amount (₨)</label>
+                  <input 
+                    type="number" 
+                    name="debit" 
+                    value={voucher.debit} 
+                    onChange={handleChange} 
+                    placeholder="Enter debit amount"
+                    step="any"
+                  />
+                  <small className={styles.hint}>Enter either Debit OR Credit</small>
+                </div>
+
+                <div className={styles.field}>
+                  <label>Credit Amount (₨)</label>
+                  <input 
+                    type="number" 
+                    name="credit" 
+                    value={voucher.credit} 
+                    onChange={handleChange} 
+                    placeholder="Enter credit amount"
+                    step="any"
+                  />
+                </div>
+
+                <div className={styles.fullWidth}>
+                  <label>Remarks</label>
+                  <textarea name="remarks" value={voucher.remarks} onChange={handleChange} placeholder="Enter remarks..." rows="3" />
+                </div>
+              </div>
+
+              <div className={styles.modalActions}>
+                <button type="button" className={styles.cancelBtn} onClick={() => {
+                  setOpen(false);
+                  setEditMode(false);
+                }}>Cancel</button>
+                <button type="submit" className={styles.saveBtn}>
+                  {editMode ? "💾 Update Voucher" : "💾 Save Voucher"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

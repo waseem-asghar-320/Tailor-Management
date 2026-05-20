@@ -1,18 +1,15 @@
 import styles from './Invoice.module.css';
 import { useNavigate } from "react-router-dom";
-// 👇 import icons
 
+// 👇 import icons
 import { MdShoppingCart, MdAssignmentReturn, MdInventory } from "react-icons/md";
 import { IoIosAddCircleOutline } from "react-icons/io";
 
-
-
 const data = [
-  { title: "Add Invoice", icon: <IoIosAddCircleOutline />, color: "#a330a3", bg: "#fec7fa" },
-  { title: "Purchase", icon: <MdShoppingCart />, color: "#3730A3", bg: "#C7D2FE" },   // blue-indigo
-  { title: "Purchase Return", icon: <MdAssignmentReturn />, color: "#9D174D", bg: "#FBCFE8" },          // pink
-  { title: "Stock Adjustment", icon: <MdInventory />, color: "#6D28D9", bg: "#DDD6FE" },         // purple
-  
+  { title: "Add Invoice", icon: <IoIosAddCircleOutline />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Create new invoices" },
+  { title: "Purchase", icon: <MdShoppingCart />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Manage purchases" },
+  { title: "Purchase Return", icon: <MdAssignmentReturn />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Handle purchase returns" },
+  { title: "Stock Adjustment", icon: <MdInventory />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Adjust inventory stock" },
 ];
 
 function Invoice() {
@@ -26,40 +23,62 @@ function Invoice() {
   };
 
   return (
-    <>
-      <h2 className={styles.heading}>Invoices</h2>
-
+    <div className={styles.wrapper}>
+      <div className={styles.bgDecoration}>
+        <div className={styles.bgCircle1}></div>
+        <div className={styles.bgCircle2}></div>
+        <div className={styles.bgCircle3}></div>
+      </div>
+      
       <div className={styles.container}>
-        
+        <div className={styles.header}>
+          <div className={styles.headerContent}>
+            <div className={styles.headerIcon}>📄</div>
+            <div>
+              <h1 className={styles.mainTitle}>Invoices</h1>
+              <p className={styles.subtitle}>Manage invoices, purchases and inventory</p>
+            </div>
+          </div>
+          <div className={styles.headerStats}>
+            <div className={styles.stat}>
+              <span className={styles.statValue}>{data.length}</span>
+              <span className={styles.statLabel}>Modules</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.stat}>
+              <span className={styles.statValue}>Active</span>
+              <span className={styles.statLabel}>System Online</span>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.grid}>
           {data.map((item, index) => (
-            <div
-              key={index}
-              className={styles.card}
+            <div 
+              key={index} 
+              className={styles.card} 
               onClick={() => handleClick(item.title)}
-              style={{ cursor: "pointer",backgroundColor: item.bg}}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* 👇 ICON instead of IMG */}
-              {/* <div className={styles.icon}>{item.icon}</div> */}
-
-              <div
-              className={styles.icon}
-              style={{
-                color: item.color,
-                backgroundColor: item.bg,
-              }}
-            >
-              {item.icon}
-            </div>
-
-              <p style={{ color: item.color }}>
-              {item.title}
-              </p>
+              <div className={styles.cardGlow}></div>
+              <div className={styles.cardInner}>
+                <div className={styles.iconWrapper} style={{ background: item.bg }}>
+                  <div className={styles.icon} style={{ color: item.color }}>
+                    {item.icon}
+                  </div>
+                </div>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.title}>{item.title}</h3>
+                  <p className={styles.description}>{item.description}</p>
+                </div>
+                <div className={styles.cardArrow}>→</div>
+              </div>
+              <div className={styles.cardBorder}></div>
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

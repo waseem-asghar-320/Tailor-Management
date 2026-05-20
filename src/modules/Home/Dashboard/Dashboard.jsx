@@ -13,7 +13,8 @@ import styles from "./Dashboard.module.css";
 function Dashboard() {
   return (
     <div>
-      <h1 className={styles.heading}>Dashboard</h1>
+    
+
 
       <Customers />
       <Production />

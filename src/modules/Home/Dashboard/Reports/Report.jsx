@@ -1,7 +1,7 @@
 import styles from './Report.module.css';
 import { useNavigate } from "react-router-dom";
-// 👇 import icons
 
+// 👇 import icons
 import {
   FaBook,
   FaMoneyBillWave,
@@ -20,86 +20,109 @@ import {
   FaChartBar
 } from "react-icons/fa";
 
-
-
 const data = [
-   { title:"Ledger", icon:<FaBook/>, color:"#3b82f6", bg:"#bfdbfe" },
-  { title:"Cash Activity", icon:<FaMoneyBillWave/>, color:"#10b981", bg:"#a7f3d0" },
-  { title:"Cash Book", icon:<FaCashRegister/>, color:"#f59e0b", bg:"#fde68a" },
-  { title:"Bank Book", icon:<FaUniversity/>, color:"#6366f1", bg:"#c7d2fe" },
-  { title:"Expenses Summary", icon:<FaFileInvoiceDollar/>, color:"#ef4444", bg:"#fecaca" },
-  { title:"Karigar Work Detail", icon:<FaUserCog/>, color:"#8b5cf6", bg:"#ddd6fe" },
-  { title:"Sales", icon:<FaShoppingCart/>, color:"#14b8a6", bg:"#99f6e4" },
-  { title:"Profit On Sale", icon:<FaChartLine/>, color:"#22c55e", bg:"#bbf7d0" },
-  { title:"Tax Report", icon:<FaReceipt/>, color:"#f97316", bg:"#fed7aa" },
-  { title:"Purchases", icon:<FaShoppingCart/>, color:"#0ea5e9", bg:"#bae6fd" },
-  { title:"Products List", icon:<FaBoxOpen/>, color:"#a855f7", bg:"#e9d5ff" },
-  { title:"Chart of Accounts", icon:<FaChartPie/>, color:"#e11d48", bg:"#fecdd3" },
-  { title:"Stock Report", icon:<FaWarehouse/>, color:"#84cc16", bg:"#d9f99d" },
-  { title:"Item Ledger", icon:<FaClipboardList/>, color:"#06b6d4", bg:"#a5f3fc" },
-  { title:"Stock Adjustments", icon:<FaClipboardList/>, color:"#f43f5e", bg:"#fecdd3" },
-  { title:"Trial Balance", icon:<FaBalanceScale/>, color:"#64748b", bg:"#e2e8f0" },
-  { title:"Profit & Loss", icon:<FaChartBar/>, color:"#16a34a", bg:"#bbf7d0" },
+  { title: "Ledger", icon: <FaBook />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "View account ledgers" },
+  { title: "Cash Activity", icon: <FaMoneyBillWave />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Cash transaction history" },
+  { title: "Cash Book", icon: <FaCashRegister />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Daily cash records" },
+  { title: "Bank Book", icon: <FaUniversity />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Bank transaction records" },
+  { title: "Expenses Summary", icon: <FaFileInvoiceDollar />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Expense reports" },
+  { title: "Karigar Work Detail", icon: <FaUserCog />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Worker work summary" },
+  { title: "Sales", icon: <FaShoppingCart />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Sales reports" },
+  { title: "Profit On Sale", icon: <FaChartLine />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Profit analysis" },
+  { title: "Tax Report", icon: <FaReceipt />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Tax calculations" },
+  { title: "Purchases", icon: <FaShoppingCart />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Purchase reports" },
+  { title: "Products List", icon: <FaBoxOpen />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Product inventory" },
+  { title: "Chart of Accounts", icon: <FaChartPie />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Account structure" },
+  { title: "Stock Report", icon: <FaWarehouse />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Stock status" },
+  { title: "Item Ledger", icon: <FaClipboardList />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Item-wise transactions" },
+  { title: "Stock Adjustments", icon: <FaClipboardList />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Stock changes" },
+  { title: "Trial Balance", icon: <FaBalanceScale />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "Financial balance" },
+  { title: "Profit & Loss", icon: <FaChartBar />, color: "#ffa600", bg: "linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%)", description: "P&L statement" },
 ];
 
 function Report() {
   const navigate = useNavigate();
 
   const handleClick = (title) => {
-    if (title === "Ledger") navigate("/ledger-form");
-    else if (title === "Cash Activity") navigate("/cash-activity-form");
-    else if (title === "Cash Book") navigate("/cash-book-form");
-    else if (title === "Bank Book") navigate("/bank-book-form");
-    else if (title === "Expenses Summary") navigate("/expenses-summary-form");
-    else if (title === "Karigar Work Detail") navigate("/karigar-work-detail-form");
-    else if (title === "Sales") navigate("/sales");
-    else if (title === "Profit On Sale") navigate("/profit-on-sale-form");
-    else if (title === "Tax Report") navigate("/tax-report-form");
-    else if (title === "Purchases") navigate("/purchases-form");
-    else if (title === "Products List") navigate("/products-list-form");
-    else if (title === "Chart of Accounts") navigate("/chart-of-accounts-form");
-    else if (title === "Stock Report") navigate("/stock-report-form");
-    else if (title === "Item Ledger") navigate("/item-ledger-form");
-    else if (title === "Stock Adjustments") navigate("/stock-adjustments-form");
-    else if (title === "Trial Balance") navigate("/trial-balance-form");
-    else if (title === "Profit & Loss") navigate("/profit-loss-form");
+    const routes = {
+      "Ledger": "/ledger-form",
+      "Cash Activity": "/cash-activity-form",
+      "Cash Book": "/cash-book-form",
+      "Bank Book": "/bank-book-form",
+      "Expenses Summary": "/expenses-summary-form",
+      "Karigar Work Detail": "/karigar-work-detail-form",
+      "Sales": "/sales",
+      "Profit On Sale": "/profit-on-sale-form",
+      "Tax Report": "/tax-report-form",
+      "Purchases": "/purchases-form",
+      "Products List": "/products-list-form",
+      "Chart of Accounts": "/chart-of-accounts-form",
+      "Stock Report": "/stock-report-form",
+      "Item Ledger": "/item-ledger-form",
+      "Stock Adjustments": "/stock-adjustments-form",
+      "Trial Balance": "/trial-balance-form",
+      "Profit & Loss": "/profit-loss-form"
+    };
+    navigate(routes[title]);
   };
 
   return (
-    <>
-      <h2 className={styles.heading}>Reports</h2>
-
+    <div className={styles.wrapper}>
+      <div className={styles.bgDecoration}>
+        <div className={styles.bgCircle1}></div>
+        <div className={styles.bgCircle2}></div>
+        <div className={styles.bgCircle3}></div>
+      </div>
+      
       <div className={styles.container}>
-        
+        <div className={styles.header}>
+          <div className={styles.headerContent}>
+            <div className={styles.headerIcon}>📊</div>
+            <div>
+              <h1 className={styles.mainTitle}>Reports</h1>
+              <p className={styles.subtitle}>Comprehensive financial and operational reports</p>
+            </div>
+          </div>
+          <div className={styles.headerStats}>
+            <div className={styles.stat}>
+              <span className={styles.statValue}>{data.length}</span>
+              <span className={styles.statLabel}>Reports</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.stat}>
+              <span className={styles.statValue}>Live</span>
+              <span className={styles.statLabel}>Data</span>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.grid}>
           {data.map((item, index) => (
-            <div
-              key={index}
-              className={styles.card}
+            <div 
+              key={index} 
+              className={styles.card} 
               onClick={() => handleClick(item.title)}
-              style={{ cursor: "pointer",backgroundColor: item.bg}}
+              style={{ animationDelay: `${Math.min(index * 0.02, 0.5)}s` }}
             >
-              {/* 👇 ICON instead of IMG */}
-              {/* <div className={styles.icon}>{item.icon}</div> */}
-
-              <div
-              className={styles.icon}
-              style={{
-                color: item.color,
-                backgroundColor: item.bg,
-              }}
-            >
-              {item.icon}
-            </div>
-
-              <p style={{ color: item.color }}>
-              {item.title}
-              </p>
+              <div className={styles.cardGlow}></div>
+              <div className={styles.cardInner}>
+                <div className={styles.iconWrapper} style={{ background: item.bg }}>
+                  <div className={styles.icon} style={{ color: item.color }}>
+                    {item.icon}
+                  </div>
+                </div>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.title}>{item.title}</h3>
+                  <p className={styles.description}>{item.description}</p>
+                </div>
+                <div className={styles.cardArrow}>→</div>
+              </div>
+              <div className={styles.cardBorder}></div>
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

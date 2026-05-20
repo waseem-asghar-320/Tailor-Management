@@ -1,137 +1,590 @@
+/* Booking.module.css - Professional Design with #ffa600 Theme */
+
+* {
+  /* margin: 0;
+  padding: 0;
+  box-sizing: border-box; */
+}
+
 .page {
-  padding: 20px;
-  background: #f9fafb;
+  padding: 30px;
+  background: linear-gradient(135deg, #fef9e7 0%, #fff4e0 100%);
   min-height: 100vh;
-  font-family: system-ui;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
-/* TOP BAR */
+/* ============================================
+   TOP BAR STYLES
+   ============================================ */
 .topBar {
-  /* display: flex;
+  display: flex;
   justify-content: space-between;
-  align-items: center; */
-  margin-bottom: 15px;
-  gap: 10px;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* SMALL ADD BUTTON (LEFT) */
-.addBtn {
-  background: #111827;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  cursor: pointer;
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: -0.5px;
 }
 
-/* BIG SEARCH (RIGHT) */
+.topBarRight {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Search Input */
+.searchWrapper {
+  position: relative;
+}
+
 .search {
-  flex: 1;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 2px solid #ffe0b3;
   font-size: 14px;
+  width: 300px;
+  transition: all 0.3s ease;
+  background: white;
+  font-family: inherit;
 }
 
-/* TABLE */
+.search:focus {
+  outline: none;
+  border-color: #ffa600;
+  box-shadow: 0 0 0 3px rgba(255, 166, 0, 0.1);
+}
+
+.search:hover {
+  border-color: #ffa600;
+}
+
+/* Add Button */
+.addBtn {
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(255, 166, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e68a00 0%, #cc7700 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 166, 0, 0.3);
+}
+
+.addBtn:active {
+  transform: translateY(0);
+}
+
+.addBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   CARD & TABLE STYLES
+   ============================================ */
 .card {
   background: white;
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 800px;
 }
 
 .table th {
   text-align: left;
-  padding: 12px;
-  border-bottom: 1px solid #eee;
-  color: #6b7280;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: none;
 }
 
 .table td {
-  padding: 12px;
-  border-bottom: 1px solid #f3f4f6;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  font-size: 14px;
+  transition: background 0.2s ease;
 }
 
-/* ACTION ICONS */
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background: #fef9e7;
+  transform: scale(1.01);
+}
+
+/* ============================================
+   STATUS BADGES
+   ============================================ */
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.status.pending {
+  background: #fff4e6;
+  color: #ffa600;
+  border-left: 3px solid #ffa600;
+}
+
+.status.in_progress {
+  background: #e3f2fd;
+  color: #2196f3;
+  border-left: 3px solid #2196f3;
+}
+
+.status.completed {
+  background: #e8f5e9;
+  color: #4caf50;
+  border-left: 3px solid #4caf50;
+}
+
+.status.cancelled {
+  background: #ffebee;
+  color: #f44336;
+  border-left: 3px solid #f44336;
+}
+
+/* ============================================
+   BALANCE STYLES
+   ============================================ */
+.balanceDue {
+  color: #ffa600;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.balancePaid {
+  color: #4caf50;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
 .actions {
   display: flex;
   gap: 10px;
 }
 
-.actions button {
+.printBtn,
+.editBtn {
   border: none;
-  background: #f3f4f6;
-  padding: 6px 8px;
-  border-radius: 6px;
+  background: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 10px;
   cursor: pointer;
-}
-
-/* MODAL */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
-.modalBox {
-  background: white;
-  width: 80%;
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 20px;
-  border-radius: 12px;
+.printBtn:hover {
+  background: #ffa600;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 166, 0, 0.3);
 }
 
-/* FORM GRID */
-.formGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 15px;
+.editBtn:hover {
+  background: #ffa600;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 166, 0, 0.3);
 }
 
-.field {
+/* ============================================
+   LOADING & EMPTY STATES
+   ============================================ */
+.loadingCell,
+.emptyCell {
+  text-align: center;
+  padding: 60px 20px !important;
+  color: #999;
+  font-size: 15px;
+}
+
+.loadingCell::before {
+  content: "⏳";
+  display: block;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.emptyCell::before {
+  content: "📭";
+  display: block;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* ============================================
+   PAGINATION STYLES
+   ============================================ */
+.paginationWrapper {
+  padding: 20px 24px;
+  border-top: 1px solid #f0f0f0;
+  background: #fef9e7;
+  border-radius: 0 0 20px 20px;
+}
+
+.paginationInfo {
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.paginationControls {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.field label {
-  font-size: 12px;
-  color: #6b7280;
-  margin-bottom: 5px;
-  text-transform: capitalize;
-}
-
-.field input {
-  width: 95%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-/* FORM ACTIONS */
-.formActions {
-  margin-top: 15px;
+.itemsPerPage {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
-.saveBtn,
-.updateBtn {
-  background: #111827;
-  color: white;
-  padding: 10px 14px;
-  border: none;
-  border-radius: 8px;
+.itemsPerPage label {
+  color: #666;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.itemsPerPage select {
+  padding: 8px 12px;
+  border: 2px solid #ffe0b3;
+  border-radius: 10px;
+  background: white;
   cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.itemsPerPage select:focus {
+  outline: none;
+  border-color: #ffa600;
+  box-shadow: 0 0 0 2px rgba(255, 166, 0, 0.1);
+}
+
+.paginationButtons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  padding: 8px 18px;
+  background: white;
+  border: 2px solid #ffe0b3;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: #ffa600;
+  color: white;
+  border-color: #ffa600;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 166, 0, 0.2);
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 6px;
+}
+
+.pageNumberBtn {
+  padding: 8px 14px;
+  background: white;
+  border: 2px solid #ffe0b3;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.3s ease;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageNumberBtn:hover {
+  background: #ffa600;
+  color: white;
+  border-color: #ffa600;
+  transform: translateY(-2px);
+}
+
+.activePage {
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  color: white;
+  border-color: #ffa600;
+  box-shadow: 0 2px 8px rgba(255, 166, 0, 0.3);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1024px) {
+  .page {
+    padding: 20px;
+  }
+  
+  .topBar {
+    padding: 15px 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .search {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 15px;
+  }
+  
+  .topBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  
+  .topBarRight {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .searchWrapper {
+    width: 100%;
+  }
+  
+  .search {
+    width: 100%;
+  }
+  
+  .addBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+  
+  .paginationControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .itemsPerPage {
+    justify-content: center;
+  }
+  
+  .paginationButtons {
+    justify-content: center;
+  }
+  
+  .pageBtn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+  
+  .pageNumberBtn {
+    padding: 6px 12px;
+    min-width: 36px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 10px;
+  }
+  
+  .topBar {
+    padding: 12px 15px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  
+  .pageNumbers {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .paginationButtons {
+    flex-wrap: wrap;
+  }
+  
+  .pageBtn {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .printBtn,
+  .editBtn {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  
+  .status {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeIn 0.4s ease;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+.tableWrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tableWrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb {
+  background: #ffa600;
+  border-radius: 10px;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb:hover {
+  background: #e68a00;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  .page {
+    background: white;
+    padding: 0;
+  }
+  
+  .topBar,
+  .paginationWrapper,
+  .actions {
+    display: none;
+  }
+  
+  .card {
+    box-shadow: none;
+  }
+  
+  .table th {
+    background: #f0f0f0;
+    color: black;
+  }
 }

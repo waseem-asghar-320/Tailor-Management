@@ -1,86 +1,344 @@
+/* Sidebar.module.css - Premium Sidebar Design */
+
+/* Overlay for mobile */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Sidebar Container */
 .sidebar {
   position: fixed;
-  left: -600px;
+  left: -280px;
   top: 0;
-  width: 225px;
+  width: 280px;
   height: 100vh;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  color: #ffffff;
+  transition: left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
-  background: #111827; 
-  color: white;
-  transition: 0.3s;
-  padding: 15px;
-  z-index: 1000;
-   /* Hide scrollbar (Firefox) */
-  scrollbar-width: none;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+}
 
-  /* Hide scrollbar (IE & Edge) */
-  -ms-overflow-style: none;
-}
-@media (max-width: 576px) {
-  .sidebar {
-    width: 100%;
-    z-index: 1001; /* Ensure it appears above the header */
-  }
- 
-}
-/* Hide scrollbar (Chrome, Safari) */
+/* Hide scrollbar */
 .sidebar::-webkit-scrollbar {
-  display: none;
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #ffa600;
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #e68a00;
 }
 
 .show {
   left: 0;
 }
 
-.top {
+/* Logo Section */
+.logoSection {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoIcon {
+  font-size: 28px;
+  color: #ffa600;
+}
+
+.logoText {
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffa600, #e68a00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .closeBtn {
-  width: 30px;
-  background: none;
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   cursor: pointer;
-}
-.closeBtn:hover {
-  color: #94a3b8;
-  background: none;
-}
-
-.item {
-  /* display: flex; */
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  cursor: pointer;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.item:hover {
-   transition: 0.3s;
-  background: #334155;
+.closeBtn:hover {
+  background: #ffa600;
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* User Profile */
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(255, 166, 0, 0.1);
+  margin: 15px;
+  border-radius: 12px;
+}
+
+.userAvatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #ffa600, #e68a00);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.userInfo h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.userInfo p {
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 10px 15px;
+}
+
+/* Navigation */
+.nav {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.navItem:hover {
+  background: rgba(255, 166, 0, 0.15);
+  color: #ffa600;
+}
+
+.navItem.active {
+  background: linear-gradient(135deg, #ffa600, #e68a00);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 166, 0, 0.3);
+}
+
+.navIcon {
+  font-size: 18px;
+  width: 24px;
 }
 
 .arrow {
-  float: right;
   margin-left: auto;
+  font-size: 12px;
+  transition: transform 0.3s ease;
 }
 
-
-.sub {
-  padding-left: 25px;
-  font-size: 15px;
+.navItem.expanded .arrow {
+  transform: rotate(180deg);
 }
 
-.sub p {
-  padding: 5px;
+/* Sub Menu */
+.navGroup {
   margin: 5px 0;
-  cursor: pointer;
 }
-.sub p:hover{
-   transition: 0.3s;
- background-color: #334155;
+
+.subMenu {
+  padding-left: 50px;
+  overflow: hidden;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subMenu p {
+  padding: 10px 12px;
+  margin: 2px 0;
+  cursor: pointer;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subMenu p:hover {
+  background: rgba(255, 166, 0, 0.15);
+  color: #ffa600;
+  transform: translateX(5px);
+}
+
+/* Footer */
+.footer {
+  padding: 20px 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.version {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 280px;
+    left: -280px;
+  }
+  
+  .show {
+    left: 0;
+  }
+  
+  .logoSection {
+    padding: 15px;
+  }
+  
+  .logoText {
+    font-size: 18px;
+  }
+  
+  .userProfile {
+    padding: 15px;
+    margin: 12px;
+  }
+  
+  .navItem {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .subMenu {
+    padding-left: 45px;
+  }
+  
+  .subMenu p {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    left: -100%;
+  }
+  
+  .userInfo h4 {
+    font-size: 13px;
+  }
+  
+  .userInfo p {
+    font-size: 10px;
+  }
+  
+  .navItem {
+    padding: 12px 15px;
+  }
+}
+
+/* Animation for active state */
+.navItem.active {
+  position: relative;
+  overflow: hidden;
+}
+
+.navItem.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: white;
+}
+
+/* Hover effect for submenu items */
+.subMenu p {
+  position: relative;
+}
+
+.subMenu p::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 2px;
+  background: #ffa600;
+  transition: width 0.3s ease;
+}
+
+.subMenu p:hover::before {
+  width: 20px;
 }

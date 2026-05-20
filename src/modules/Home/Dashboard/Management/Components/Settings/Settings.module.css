@@ -1,0 +1,405 @@
+/* Settings.module.css - Professional Design with Theme Support */
+
+/* Light Theme (Default) */
+.light {
+  --bg-primary: linear-gradient(135deg, #fef9e7 0%, #fff4e0 100%);
+  --bg-card: white;
+  --text-primary: #1a1a2e;
+  --text-secondary: #6c757d;
+  --border-color: #e9ecef;
+  --section-bg: #fef9e7;
+  --input-bg: white;
+  --input-border: #e9ecef;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Theme */
+.dark {
+  --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --bg-card: #1e1e2e;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b0;
+  --border-color: #2a2a3e;
+  --section-bg: #2a2a3e;
+  --input-bg: #2a2a3e;
+  --input-border: #3a3a4e;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+  padding: 30px;
+  background: var(--bg-primary);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  transition: background 0.3s ease;
+}
+
+.card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: fadeIn 0.4s ease;
+  transition: background 0.3s ease;
+}
+
+.header {
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  padding: 30px;
+  text-align: center;
+}
+
+.title {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Theme Card */
+.themeCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  margin: 20px 30px;
+  background: var(--section-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.themeContent {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.themeIcon {
+  font-size: 32px;
+  color: #ffa600;
+  background: rgba(255, 166, 0, 0.1);
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.themeInfo h3 {
+  margin: 0 0 5px 0;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.themeInfo p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.themeToggle {
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.themeToggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 166, 0, 0.3);
+}
+
+/* Sections */
+.section {
+  margin: 20px 30px;
+  padding: 20px;
+  background: var(--section-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #ffa600;
+}
+
+.sectionIcon {
+  font-size: 24px;
+  color: #ffa600;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffa600;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffa600;
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 12px 14px;
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: #ffa600;
+  box-shadow: 0 0 0 3px rgba(255, 166, 0, 0.1);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+/* Checkbox Grid */
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 12px;
+  background: var(--input-bg);
+  border-radius: 10px;
+  border: 1px solid var(--input-border);
+  transition: all 0.3s ease;
+}
+
+.checkboxField:hover {
+  border-color: #ffa600;
+}
+
+.checkboxField input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #ffa600;
+}
+
+.checkboxField span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+/* Form Actions */
+.formActions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  padding: 20px 30px;
+  border-top: 1px solid var(--border-color);
+}
+
+.saveBtn {
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  color: white;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.saveBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e68a00 0%, #cc7700 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 166, 0, 0.3);
+}
+
+.saveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.resetBtn {
+  background: white;
+  color: #666;
+  padding: 12px 28px;
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--input-bg);
+  color: var(--text-secondary);
+}
+
+.resetBtn:hover {
+  background: #fef9e7;
+  border-color: #ffa600;
+  color: #ffa600;
+  transform: translateY(-2px);
+}
+
+.successMessage {
+  margin: 20px 30px;
+  padding: 15px;
+  background: #e8f5e9;
+  color: #4caf50;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+  
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .checkboxGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .themeCard {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .themeContent {
+    flex-direction: column;
+  }
+  
+  .formActions {
+    flex-direction: column;
+  }
+  
+  .saveBtn, .resetBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .section {
+    margin: 15px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 22px;
+  }
+  
+  .subtitle {
+    font-size: 12px;
+  }
+  
+  .section {
+    padding: 15px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffa600;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e68a00;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #2a2a3e;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #ffa600;
+}

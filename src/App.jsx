@@ -2,7 +2,9 @@ import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import Login from './modules/Authentication/Login.jsx';
 import Dashboard from './modules/Home/Dashboard/Dashboard.jsx';
 import Booking from "./modules/Home/Dashboard/Customers/Components/Booking/Booking.jsx";
+import BookingForm from "./modules/Home/Dashboard/Customers/Components/Booking/BookingForm.jsx";
 import Delivery from "./modules/Home/Dashboard/Customers/Components/Delivery/Delivery.jsx";
+import DeliveryForm from "./modules/Home/Dashboard/Customers/Components/Delivery/DeliveryForm.jsx";
 import FindBooking from "./modules/Home/Dashboard/Customers/Components/Find-Booking/FindBooking.jsx";
 import ShalwaarKameez from "./modules/Home/Dashboard/Customers/Components/ShalwarKameez/ShalwarKameez.jsx";
 import Receipt from "./modules/Home/Dashboard/Customers/Components/Receipt/Receipt.jsx";
@@ -12,6 +14,10 @@ import CustomerLedger from "./modules/Home/Dashboard/Customers/Components/Custom
 import AddCustomer from "./modules/Home/Dashboard/Customers/Components/AddEditCustomers/AddCustomer.jsx";
 import Report from "./modules/Home/Dashboard/Customers/Components/Report/Report.jsx";
 import CustomerBalance from "./modules/Home/Dashboard/Customers/Components/CustomerBalance/CustomerBalance.jsx";
+import HomeDelivery from "./modules/Home/Dashboard/Customers/Components/HomeDelivery/HomeDelivery.jsx";
+import UnpaidDelivery from "./modules/Home/Dashboard/Customers/Components/UnpaidDelivery/UnpaidDelivery.jsx";
+import DeliveryCheck from "./modules/Home/Dashboard/Customers/Components/DeliveryCheck/DeliveryCheck.jsx";
+import TrailCheck from "./modules/Home/Dashboard/Customers/Components/TrailCheck/TrailCheck.jsx";
 // invoice section
 import AddInvoice from "./modules/Home/Dashboard/Invoices/Components/AddInvoice/AddInvoice.jsx";
 import Purchase from "./modules/Home/Dashboard/Invoices/Components/Purchase/Purchase.jsx";
@@ -53,6 +59,8 @@ import ProfitAndLoss from "./modules/Home/Dashboard/Reports/Components/ProfitAnd
 //Managment Section
 import ChartOfAccount from "./modules/Home/Dashboard/Management/Components/ChartOfAccount/ChartOfAccount.jsx";
 import AddEditItem from "./modules/Home/Dashboard/Management/Components/AddEditItems/AddEditItem.jsx";
+import Settings from "./modules/Home/Dashboard/Management/Components/Settings/Settings.jsx";
+
 // const Navigate = useNavigate();
 
 function App() {
@@ -76,10 +84,18 @@ function App() {
       )
     },
     {
-      path: "/booking-form",
+      path: "/bookings",
       element: (
         <Layout>
           <Booking />
+        </Layout>
+      )
+    },
+    {
+      path: "/booking-form",
+      element: (
+        <Layout>
+          <BookingForm />
         </Layout>
       )
     },
@@ -92,10 +108,18 @@ function App() {
       )
     },
     {
-      path: "/delivery-form",
+      path: "/deliveries",
       element: (
         <Layout>
           <Delivery />
+        </Layout>
+      )
+    },
+     {
+      path: "/delivery-form",
+      element: (
+        <Layout>
+          <DeliveryForm />
         </Layout>
       )
     },
@@ -155,6 +179,38 @@ function App() {
         </Layout>
       )
     },
+     {
+      path: "/home-delivery-list-form",
+      element: (
+        <Layout>
+          <HomeDelivery />
+        </Layout>
+      )
+    },  
+      {
+      path: "/unpaid-deliveries-form",
+      element: (
+        <Layout>
+          <UnpaidDelivery />
+        </Layout>
+      )
+    },
+    {
+      path: "/delivery-check-form",
+      element: (
+        <Layout>
+          <DeliveryCheck />
+        </Layout>
+      )
+    },
+    {
+      path: "/trial-check-form",
+      element: (
+        <Layout>
+          <TrailCheck />
+        </Layout>
+      )
+    },
     // invoice section path
     {
       path: "/add-invoice-form",
@@ -188,6 +244,7 @@ function App() {
         </Layout>
       )
     },  
+    
     //Production section
     {
       path: "/cutting-form",
@@ -409,6 +466,22 @@ function App() {
     },  
     {
       path: "/add-edit-items",
+      element: (
+        <Layout>
+          <AddEditItem />
+        </Layout>
+      )
+    },
+      {
+      path: "/settings",
+      element: (
+        <Layout>
+          <Settings />
+        </Layout>
+      )
+    },
+     {
+      path: "/branch-management",
       element: (
         <Layout>
           <AddEditItem />

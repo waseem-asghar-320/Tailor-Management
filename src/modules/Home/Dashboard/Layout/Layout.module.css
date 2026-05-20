@@ -1,0 +1,45 @@
+/* Layout.module.css */
+.layout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%);
+}
+
+.mainContent {
+  margin-left: 0;
+  margin-top: 70px; /* Space for fixed header */
+  padding: 20px;
+  min-height: calc(100vh - 70px);
+  transition: margin-left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* When sidebar is open on desktop */
+.sidebarOpen {
+  margin-left: 280px;
+}
+
+.contentWrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .mainContent {
+    margin-top: 60px;
+    padding: 15px;
+    min-height: calc(100vh - 60px);
+  }
+  
+  .sidebarOpen {
+    margin-left: 0;
+    overflow: hidden;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 12px;
+  }
+}
