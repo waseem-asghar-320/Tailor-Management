@@ -60,8 +60,7 @@ import ProfitAndLoss from "./modules/Home/Dashboard/Reports/Components/ProfitAnd
 import ChartOfAccount from "./modules/Home/Dashboard/Management/Components/ChartOfAccount/ChartOfAccount.jsx";
 import AddEditItem from "./modules/Home/Dashboard/Management/Components/AddEditItems/AddEditItem.jsx";
 import Settings from "./modules/Home/Dashboard/Management/Components/Settings/Settings.jsx";
-
-// const Navigate = useNavigate();
+ import KarigarRates from "./modules/Home/Dashboard/Management/Components/Karigar-Rates/KarigarRates.jsx";
 
 function App() {
 
@@ -353,20 +352,23 @@ function App() {
         </Layout>
       )   
     },
-    {
-      path: "/expenses-summary-form",
-      element: <Layout> 
-        <ExpensesSummary />
-      </Layout>
-    },
-    {
-      path: "/karigar-work-detail-form",
-      element: (
-        <Layout>
-          <KarigarWork />
-        </Layout> 
-      )  
-    },
+     {
+  path: "/karigar-rates",
+  element: (
+    <Layout>
+      <KarigarRates />
+    </Layout>
+  )
+},
+
+{
+  path: "/karigar-work-detail-form",
+  element: (
+    <Layout>
+      <KarigarWork />
+    </Layout> 
+  )
+},
     {
       path: "/sales",
       element: <Layout>   
@@ -413,6 +415,25 @@ function App() {
         </Layout>
       )   
     },
+
+
+    {
+  path: "/karigar-work-summary-form",
+  element: (
+    <Layout>
+      <h1>Karigar Work Summary Page</h1>
+    </Layout>
+  )
+},
+{
+  path: "/not-sent-to-karigar-form",
+  element: (
+    <Layout>
+      <h1>Not Sent to Karigar Page</h1>
+    </Layout>
+  )
+},
+
     {
       path: "/stock-report-form",
       element: (
@@ -493,6 +514,7 @@ function App() {
       path: "*",
       element: <h1 style={{textAlign:"center",marginTop:"50px"}}>404 - Page Not Found</h1> 
     }
+    
   ]);
 
 
