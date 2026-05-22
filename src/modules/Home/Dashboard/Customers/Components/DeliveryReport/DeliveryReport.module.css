@@ -2,7 +2,7 @@
 
 .container {
   padding: 30px;
-  background: linear-gradient(135deg, #fef9e7 0%, #fff4e0 100%);
+  background: var(--bg-primary);
   min-height: 100vh;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
@@ -28,7 +28,7 @@
 }
 
 .subtitle {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 14px;
   margin: 0;
 }
@@ -36,7 +36,7 @@
 .dateRangeSelector {
   display: flex;
   gap: 10px;
-  background: white;
+  background: var(--bg-card);
   padding: 5px;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -51,11 +51,11 @@
   font-size: 13px;
   font-weight: 500;
   transition: all 0.3s ease;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .rangeBtn:hover {
-  background: #fef9e7;
+  background: var(--bg-hover);
   color: #ffa600;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .card {
-  background: white;
+  background: var(--bg-card);
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -96,7 +96,7 @@
 
 .cardIcon {
   font-size: 40px;
-  background: #fef9e7;
+  background: var(--bg-hover);
   width: 60px;
   height: 60px;
   display: flex;
@@ -110,7 +110,7 @@
 }
 
 .cardContent h4 {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -121,7 +121,7 @@
 .cardContent p {
   font-size: 28px;
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -145,7 +145,7 @@
 }
 
 .chartBox {
-  background: white;
+  background: var(--bg-card);
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -167,7 +167,7 @@
 }
 
 .chartHeader h4 {
-  color: #333;
+  color: var(--text-primary);
   font-size: 16px;
   font-weight: 700;
   margin: 0;
@@ -205,7 +205,7 @@
 
 /* Custom Tooltip */
 .customTooltip {
-  background: white;
+  background: var(--bg-card);
   padding: 12px 16px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -215,12 +215,12 @@
 .tooltipLabel {
   font-weight: 700;
   margin-bottom: 8px;
-  color: #333;
+  color: var(--text-primary);
 }
 
 /* Summary Table */
 .summaryTable {
-  background: white;
+  background: var(--bg-card);
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -248,7 +248,7 @@
 .table th {
   text-align: left;
   padding: 12px 15px;
-  background: #fef9e7;
+  background: var(--bg-hover);
   color: #ffa600;
   font-weight: 600;
   font-size: 13px;
@@ -258,13 +258,13 @@
 
 .table td {
   padding: 12px 15px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #333;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
   font-size: 14px;
 }
 
 .table tbody tr:hover {
-  background: #fef9e7;
+  background: var(--bg-hover);
 }
 
 .revenueText {
@@ -349,7 +349,7 @@
 /* Print Styles */
 @media print {
   .container {
-    background: white;
+    background: var(--bg-card);
     padding: 0;
   }
   

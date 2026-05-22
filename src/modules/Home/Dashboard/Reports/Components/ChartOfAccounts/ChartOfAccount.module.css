@@ -2,7 +2,7 @@
 
 .container {
   padding: 30px;
-  background: linear-gradient(135deg, #fef9e7 0%, #fff4e0 100%);
+  background: var(--bg-primary);
   min-height: 100vh;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
@@ -10,7 +10,7 @@
 .card {
   max-width: 1100px;
   margin: 0 auto;
-  background: white;
+  background: var(--bg-card);
   border-radius: 24px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -69,7 +69,7 @@ form {
   border-radius: 12px;
   font-size: 14px;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--bg-card);
   font-family: inherit;
   width: 100%;
   box-sizing: border-box;
@@ -176,8 +176,8 @@ form {
 }
 
 .resetBtn {
-  background: white;
-  color: #666;
+  background: var(--bg-card);
+  color: var(--text-secondary);
   padding: 12px 28px;
   border: 2px solid #ffe0b3;
   border-radius: 12px;
@@ -188,7 +188,7 @@ form {
 }
 
 .resetBtn:hover {
-  background: #fef9e7;
+  background: var(--bg-hover);
   border-color: #ffa600;
   color: #ffa600;
   transform: translateY(-2px);
@@ -248,7 +248,7 @@ form {
 }
 
 .resultsBadge {
-  background: #fef9e7;
+  background: var(--bg-hover);
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 12px;
@@ -272,7 +272,7 @@ form {
 .table th {
   text-align: left;
   padding: 14px 20px;
-  background: #fef9e7;
+  background: var(--bg-hover);
   color: #ffa600;
   font-weight: 600;
   font-size: 13px;
@@ -283,13 +283,13 @@ form {
 
 .table td {
   padding: 12px 20px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #333;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
   font-size: 14px;
 }
 
 .table tbody tr:hover {
-  background: #fef9e7;
+  background: var(--bg-hover);
 }
 
 .balanceCell {
@@ -298,14 +298,14 @@ form {
 }
 
 .footerRow {
-  background: #fef9e7;
+  background: var(--bg-hover);
   border-top: 2px solid #ffa600;
 }
 
 .footerLabel {
   text-align: right;
   font-weight: 700;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .footerBalance {
@@ -334,13 +334,13 @@ form {
 }
 
 .printBtn {
-  background: white;
-  color: #666;
+  background: var(--bg-card);
+  color: var(--text-secondary);
   border: 2px solid #ffe0b3;
 }
 
 .printBtn:hover {
-  background: #fef9e7;
+  background: var(--bg-hover);
   border-color: #ffa600;
   color: #ffa600;
   transform: translateY(-2px);

@@ -25,10 +25,9 @@ function Settings() {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   
-  // Theme State
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    return savedTheme || "light";
+  // Theme State - Updated
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
   });
 
   // Settings State
@@ -73,16 +72,16 @@ function Settings() {
     currency_symbol: "₨"
   });
 
-  // Apply theme to document
+  // Apply theme to document - Updated
   useEffect(() => {
-    if (theme === "dark") {
+    if (isDark) {
       document.documentElement.setAttribute("data-theme", "dark");
       localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.setAttribute("data-theme", "light");
       localStorage.setItem("theme", "light");
     }
-  }, [theme]);
+  }, [isDark]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -93,8 +92,9 @@ function Settings() {
     setSaved(false);
   };
 
-  const handleThemeToggle = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+  // Theme Toggle Function - Updated
+  const toggleTheme = () => {
+    setIsDark(!isDark);
     setSaved(false);
   };
 
@@ -147,31 +147,31 @@ function Settings() {
         currency: "PKR",
         currency_symbol: "₨"
       });
-      setTheme("light");
+      setIsDark(false);
     }
   };
 
   return (
-    <div className={`${styles.container} ${theme === "dark" ? styles.dark : styles.light}`}>
+    <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
           <h1 className={styles.title}>Settings</h1>
           <p className={styles.subtitle}>Configure your application preferences</p>
         </div>
 
-        {/* Theme Toggle Card */}
+        {/* Theme Toggle Card - Updated */}
         <div className={styles.themeCard}>
           <div className={styles.themeContent}>
             <div className={styles.themeIcon}>
-              {theme === "light" ? <FaSun /> : <FaMoon />}
+              {!isDark ? <FaSun /> : <FaMoon />}
             </div>
             <div className={styles.themeInfo}>
-              <h3>{theme === "light" ? "Light Mode" : "Dark Mode"}</h3>
-              <p>Switch between light and dark theme</p>
+              <h3>{!isDark ? "Light Mode" : "Dark Mode"}</h3>
+              <p>Switch between light and dark theme for entire application</p>
             </div>
           </div>
-          <button className={styles.themeToggle} onClick={handleThemeToggle}>
-            {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+          <button className={styles.themeToggle} onClick={toggleTheme}>
+            {!isDark ? "🌙 Switch to Dark Mode" : "☀️ Switch to Light Mode"}
           </button>
         </div>
 

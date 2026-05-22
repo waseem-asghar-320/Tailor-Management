@@ -274,8 +274,8 @@
 }
 
 .resetBtn {
-  background: white;
-  color: #666;
+  background: var(--bg-card);
+  color: var(--text-secondary);
   padding: 12px 28px;
   border: 2px solid var(--input-border);
   border-radius: 12px;
@@ -291,7 +291,7 @@
 }
 
 .resetBtn:hover {
-  background: #fef9e7;
+  background: var(--bg-hover);
   border-color: #ffa600;
   color: #ffa600;
   transform: translateY(-2px);

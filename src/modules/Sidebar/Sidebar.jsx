@@ -78,7 +78,7 @@ function Sidebar({ open, setOpen }) {
             onClick={() => handleNavigate("/dashboard")}
           >
             <FaHome className={styles.navIcon} />
-            <span>Dashboard</span>
+            <span>Home</span>
           </div>
 
           {/* CUSTOMERS */}

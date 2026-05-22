@@ -24,8 +24,8 @@
   top: 0;
   width: 280px;
   height: 100vh;
-  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-  color: #ffffff;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
   transition: left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 999;
   display: flex;
@@ -319,7 +319,7 @@
   left: 0;
   width: 3px;
   height: 100%;
-  background: white;
+  background: var(--bg-card);
 }
 
 /* Hover effect for submenu items */
