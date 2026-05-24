@@ -45,7 +45,7 @@ export default function Auth() {
       // Specific user login
       const user = {
         id: 1,
-        name: "Pakistan User",
+        name: "Rana Waseem",
         email: "pakistan@gmail.com",
         role: "Admin",
         phone: "1234567890",
