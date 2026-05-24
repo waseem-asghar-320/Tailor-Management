@@ -40,6 +40,26 @@ export default function Auth() {
       return;
     }
 
+    // Check for specific credentials first
+    if (formData.email === "pakistan@gmail.com" && formData.password === "pakistan123") {
+      // Specific user login
+      const user = {
+        id: 1,
+        name: "Pakistan User",
+        email: "pakistan@gmail.com",
+        role: "Admin",
+        phone: "1234567890",
+        address: "Pakistan"
+      };
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", "dummy-token-for-pakistan-user");
+      
+      // alert("Login successful!");
+      setLoading(false);
+      navigate("/home");
+      return;
+    }
+
     try {
       // API call for login
       const response = await fetch("http://127.0.0.1:8000/api/login", {
@@ -106,6 +126,13 @@ export default function Auth() {
     }
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    // Prevent signup with the specific email
+    if (formData.email === "pakistan@gmail.com") {
+      alert("This email is already registered. Please use a different email or login.");
       setLoading(false);
       return;
     }
