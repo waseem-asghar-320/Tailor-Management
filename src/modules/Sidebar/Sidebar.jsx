@@ -74,12 +74,23 @@ function Sidebar({ open, setOpen }) {
         <nav className={styles.nav}>
           {/* HOME */}
           <div
-            className={`${styles.navItem} ${isActivePath("/dashboard") ? styles.active : ""}`}
-            onClick={() => handleNavigate("/dashboard")}
+            className={`${styles.navItem} ${isActivePath("/home") ? styles.active : ""}`}
+            onClick={() => handleNavigate("/home")}
           >
             <FaHome className={styles.navIcon} />
             <span>Home</span>
           </div>
+
+        {/* dashboard button */}
+
+        <div
+  className={`${styles.navItem} ${isActivePath("/my-dashboard") ? styles.active : ""}`}
+  onClick={() => handleNavigate("/my-dashboard")}
+>
+  <span className={styles.navIcon}>📊</span>
+  <span>Dashboard</span>
+</div>
+          
 
           {/* CUSTOMERS */}
           <div className={styles.navGroup}>
@@ -232,7 +243,7 @@ function Sidebar({ open, setOpen }) {
                 <p onClick={() => handleNavigate("/branch-management")}>🏢 Branch Management</p>
                 <p onClick={() => handleNavigate("/karigar-rates")}>💰 Karigar Rates</p>
                 <p onClick={() => handleNavigate("/designs")}>🎨 Designs</p>
-                <p onClick={() => handleNavigate("/extras")}>🧩 Extras</p>
+                <p onClick={() => handleNavigate("/extra-stitches")}>🧩 Extra Stitch</p>
                 <p onClick={() => handleNavigate("/change-password")}>🔑 Change Password</p>
                 <p onClick={() => handleNavigate("/user-management")}>👥 User Management</p>
                 <p onClick={() => handleNavigate("/user-authorization")}>🛡️ User Authorization</p>

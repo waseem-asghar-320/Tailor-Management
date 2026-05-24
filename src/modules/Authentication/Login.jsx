@@ -67,7 +67,7 @@ export default function Auth() {
         localStorage.setItem("token", data.token);
         
         alert("Login successful!");
-        navigate("/dashboard");
+        navigate("/home");
       } else {
         alert(data.message || "Login failed. Please check your credentials.");
       }
@@ -141,7 +141,7 @@ export default function Auth() {
         localStorage.setItem("token", data.token);
         
         alert("Account created successfully!");
-        navigate("/dashboard");
+        navigate("/home");
       } else {
         alert(data.message || "Signup failed. Please try again.");
       }

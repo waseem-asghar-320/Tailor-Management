@@ -1,0 +1,172 @@
+/* Home.module.css - Professional Home */
+
+.home {
+  padding: 30px;
+  background: var(--bg-primary);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Welcome Section */
+.welcomeSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: var(--bg-card);
+  padding: 25px 35px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.welcomeText {
+  flex: 1;
+}
+
+.welcomeTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.welcomeSubtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Dashboard Button - FIXED */
+.dashboardBtn {
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(255, 166, 0, 0.3);
+  position: relative;
+  z-index: 10;
+}
+
+.dashboardBtn:hover {
+  background: linear-gradient(135deg, #e68a00 0%, #cc7700 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 166, 0, 0.4);
+}
+
+.dashboardBtn:active {
+  transform: translateY(0);
+}
+
+/* Modules Container */
+.modulesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section {
+  background: var(--bg-card);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #ffa600 0%, #e68a00 100%);
+  border-bottom: 2px solid #ffa600;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+/* Override section styles */
+.section :global(.container) {
+  padding: 20px !important;
+  border: none !important;
+  margin: 0 !important;
+}
+
+.section :global(.grid) {
+  gap: 15px !important;
+}
+
+.section :global(.card) {
+  margin-top: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .home {
+    padding: 20px;
+  }
+  
+  .welcomeSection {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .dashboardBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 24px;
+  }
+  
+  .sectionHeader {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 15px 20px;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 18px;
+  }
+  
+  .welcomeTitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    padding: 15px;
+  }
+  
+  .welcomeSection {
+    padding: 15px;
+  }
+  
+  .welcomeTitle {
+    font-size: 20px;
+  }
+  
+  .welcomeSubtitle {
+    font-size: 12px;
+  }
+  
+  .dashboardBtn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}

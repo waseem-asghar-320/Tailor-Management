@@ -1,8 +1,8 @@
-/* Report.module.css - Premium Dashboard Design */
+/* Report.module.css - Premium Dashboard Design with Theme Support */
 
 .wrapper {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%);
+  background: var(--bg-primary);
   position: relative;
   overflow-x: hidden;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
@@ -69,8 +69,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(255, 166, 0, 0.1);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
 }
@@ -149,7 +149,7 @@
 .statDivider {
   width: 1px;
   height: 30px;
-  background: #ffe0b3;
+  background: var(--border-color);
 }
 
 /* Grid Layout - More columns for reports */
@@ -170,6 +170,7 @@
   animation: fadeInUp 0.5s ease forwards;
   opacity: 0;
   transform: translateY(20px);
+  border: 1px solid var(--border-color);
 }
 
 @keyframes fadeInUp {
@@ -212,6 +213,7 @@
   justify-content: center;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  background: var(--bg-hover);
 }
 
 .card:hover .iconWrapper {
@@ -224,6 +226,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  color: #ffa600;
 }
 
 .cardContent {
@@ -244,14 +247,14 @@
 
 .description {
   font-size: 11px;
-  color: #999;
+  color: var(--text-secondary);
   margin: 0;
   line-height: 1.4;
 }
 
 .cardArrow {
   font-size: 18px;
-  color: #ccc;
+  color: var(--text-secondary);
   transition: all 0.3s ease;
   opacity: 0;
   transform: translateX(-10px);
@@ -283,6 +286,7 @@
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(255, 166, 0, 0.15);
+  border-color: #ffa600;
 }
 
 /* Responsive Design */
@@ -392,7 +396,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-secondary);
   border-radius: 10px;
 }
 

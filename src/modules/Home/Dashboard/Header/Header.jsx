@@ -61,9 +61,13 @@ function Header({ setOpen, open }) {
   const getPageTitle = () => {
     const path = location.pathname;
     const titles = {
-  "/dashboard": "Dashboard",
+  "/home": "Home",
+  "/profile": "Profile",
+  "/my-dashboard": "Dashboard",
   "/bookings": "Bookings",
+  "/booking-form": "Bookings",
   "/deliveries": "Deliveries",
+  "/delivery-form": "Deliveries",
   "/customers": "Customers",
   "/receipt-form": "Receipt",
   "/shalwaar-kameez-form": "Shalwaar Qameez",
@@ -135,8 +139,8 @@ function Header({ setOpen, open }) {
   "/change-password": "Change Password",
   "/user-management": "User Management",
   "/user-authorization": "User Authorization",
-  "/settings": "Settings"
-
+  "/settings": "Settings",
+  "/extra-stitches": "Extra Stitch",
 
 
 };
@@ -165,6 +169,7 @@ function Header({ setOpen, open }) {
           
           <div className={styles.pageInfo}>
             <span className={styles.pageIcon}>
+              {getPageTitle() === "Home" && "🏠"}
               {getPageTitle() === "Dashboard" && "📊"}
               {getPageTitle() === "Bookings" && "📅"}
               {getPageTitle() === "Deliveries" && "🚚"}
@@ -226,7 +231,7 @@ function Header({ setOpen, open }) {
 
               {/* //Management path */}
 
-              {getPageTitle() === "Chart of Accounts" && ""}
+              {/* {getPageTitle() === "Chart of Accounts" && "📊"} */}
               {getPageTitle() === "Add/Edit Items" && "📦"}
               {getPageTitle() === "Branch Management" && "🏢"}
               {getPageTitle() === "Karigar Rates" && "💰"}
@@ -236,6 +241,8 @@ function Header({ setOpen, open }) {
               {getPageTitle() === "User Management" && "👥"}
               {getPageTitle() === "User Authorization" && "🛡️"}
               {getPageTitle() === "Settings" && "⚙️"}
+               {getPageTitle() === "Extra Stitch" && "🧩"}
+               {getPageTitle() === "Profile" && "👤"}
             </span>
             <h3 className={styles.pageTitle}>{getPageTitle()}</h3>
           </div>

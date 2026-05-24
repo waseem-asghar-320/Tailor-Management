@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import Login from './modules/Authentication/Login.jsx';
-import Dashboard from './modules/Home/Dashboard/Dashboard.jsx';
+import Home from './modules/Home/Dashboard/Home.jsx';
+import Profile from "./modules/Home/Dashboard/Header/Components/Profile/Profile.jsx";
+import MyDashboard from "./modules/MyDashboard/MyDashboard.jsx";
 import Booking from "./modules/Home/Dashboard/Customers/Components/Booking/Booking.jsx";
 import BookingForm from "./modules/Home/Dashboard/Customers/Components/Booking/BookingForm.jsx";
 import Delivery from "./modules/Home/Dashboard/Customers/Components/Delivery/Delivery.jsx";
@@ -60,7 +62,13 @@ import ProfitAndLoss from "./modules/Home/Dashboard/Reports/Components/ProfitAnd
 import ChartOfAccount from "./modules/Home/Dashboard/Management/Components/ChartOfAccount/ChartOfAccount.jsx";
 import AddEditItem from "./modules/Home/Dashboard/Management/Components/AddEditItems/AddEditItem.jsx";
 import Settings from "./modules/Home/Dashboard/Management/Components/Settings/Settings.jsx";
- import KarigarRates from "./modules/Home/Dashboard/Management/Components/Karigar-Rates/KarigarRates.jsx";
+import KarigarRates from "./modules/Home/Dashboard/Management/Components/Karigar-Rates/KarigarRates.jsx";
+import BranchManagement from "./modules/Home/Dashboard/Management/Components/BranchManagement/BranchManagement.jsx";7
+import ExtraStitches from "./modules/Home/Dashboard/Management/Components/ExtraStitches/ExtraStitches.jsx";
+import Design from "./modules/Home/Dashboard/Management/Components/Design/Design.jsx";
+
+
+// const Navigate = useNavigate();
 
 function App() {
 
@@ -75,13 +83,30 @@ function App() {
     },
     
     {
-      path: "/dashboard",
+      path: "/home",
       element: (
         <Layout>
-          <Dashboard />
+          <Home />
         </Layout>
       )
     },
+     {
+      path: "/profile",
+      element: (
+        <Layout>
+          <Profile />
+        </Layout>
+      )
+    },
+    {
+      path: "/my-dashboard",
+      element: (
+        <Layout>
+          <MyDashboard />
+        </Layout>
+      )
+    },
+
     {
       path: "/bookings",
       element: (
@@ -352,23 +377,20 @@ function App() {
         </Layout>
       )   
     },
-     {
-  path: "/karigar-rates",
-  element: (
-    <Layout>
-      <KarigarRates />
-    </Layout>
-  )
-},
-
-{
-  path: "/karigar-work-detail-form",
-  element: (
-    <Layout>
-      <KarigarWork />
-    </Layout> 
-  )
-},
+    {
+      path: "/expenses-summary-form",
+      element: <Layout> 
+        <ExpensesSummary />
+      </Layout>
+    },
+    {
+      path: "/karigar-work-detail-form",
+      element: (
+        <Layout>
+          <KarigarWork />
+        </Layout> 
+      )  
+    },
     {
       path: "/sales",
       element: <Layout>   
@@ -415,25 +437,6 @@ function App() {
         </Layout>
       )   
     },
-
-
-    {
-  path: "/karigar-work-summary-form",
-  element: (
-    <Layout>
-      <h1>Karigar Work Summary Page</h1>
-    </Layout>
-  )
-},
-{
-  path: "/not-sent-to-karigar-form",
-  element: (
-    <Layout>
-      <h1>Not Sent to Karigar Page</h1>
-    </Layout>
-  )
-},
-
     {
       path: "/stock-report-form",
       element: (
@@ -493,6 +496,15 @@ function App() {
         </Layout>
       )
     },
+     {
+      path: "/karigar-rates",
+      element: (
+        <Layout>
+          <KarigarRates />
+        </Layout>
+      )
+    },
+    
       {
       path: "/settings",
       element: (
@@ -505,16 +517,33 @@ function App() {
       path: "/branch-management",
       element: (
         <Layout>
-          <AddEditItem />
+          <BranchManagement />
+        </Layout>
+      )
+    },
+       {
+      path: "/extra-stitches",
+      element: (
+        <Layout>
+          <ExtraStitches />
         </Layout>
       )
     },
 
     {
+      path: "/designs",
+      element: (
+        <Layout>
+          <Design />
+        </Layout>
+      )
+    },
+    {
       path: "*",
       element: <h1 style={{textAlign:"center",marginTop:"50px"}}>404 - Page Not Found</h1> 
     }
-    
+
+
   ]);
 
 
